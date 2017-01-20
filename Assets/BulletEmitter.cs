@@ -35,7 +35,7 @@ public class BulletEmitter : MonoBehaviour
 
         for (int i = 0; i < NUMBER_OF_SHOTS; i++)
         {
-            float angle = this.transform.rotation.y;
+            float angle = this.transform.rotation.eulerAngles.y;
             angle -= MAX_ANGLE;
             angle += i * angleDiff;
 
@@ -49,7 +49,6 @@ public class BulletEmitter : MonoBehaviour
         Transform t = go.transform;
         t.SetParent(GameController.obj.BulletAnchor);
         t.position = this.transform.position;
-        t.rotation = Quaternion.identity;
         Bullet bullet = go.GetComponent<Bullet>();
         bullet.SetUp(this.transform.position, rotation, BULLET_FORCE, BULLET_MAX_DIST);
     }
