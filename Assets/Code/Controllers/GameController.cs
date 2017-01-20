@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour
     [Header("Scene references")]
     public Camera cam;
     public Transform camT;
+    public Transform BulletAnchor;
+
+    [Header("Prefabs")]
+    public GameObject PF_Bullet;
 
     #endregion PUBLIC MEMBERS
 
