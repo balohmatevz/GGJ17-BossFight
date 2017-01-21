@@ -64,10 +64,13 @@ public class GameController : MonoBehaviour
 
     public void Frame()
     {
-        Vector2 deltaMousePos = (Vector2)Input.mousePosition - (Vector2)LastMousePos;
+        if (Input.GetMouseButton(0))
+        {
+            Vector2 deltaMousePos = (Vector2)Input.mousePosition - (Vector2)LastMousePos;
 
-        camT.Rotate(0, deltaMousePos.x * 0.4f, 0, Space.World);
-        camT.Rotate(-deltaMousePos.y * 0.4f, 0, 0, Space.Self);
+            camT.Rotate(0, deltaMousePos.x * 0.4f, 0, Space.World);
+            camT.Rotate(-deltaMousePos.y * 0.4f, 0, 0, Space.Self);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -21,11 +21,19 @@ namespace UnityStandardAssets.Vehicles.Car
             // pass the input to the car!
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
+
+            // Transform the input to reflect the fixed camera view
+            var dir = new Vector3(h, 0f, v);
+            var d2 = Quaternion.Inverse(m_Car.transform.rotation) * dir;
+
+            //Debug.DrawLine(m_Car.transform.position, m_Car.transform.position + dir * 2f, Color.red);
+            //Debug.DrawLine(m_Car.transform.position, m_Car.transform.position + d2 * 2f, Color.magenta);
+
 #if !MOBILE_INPUT
             float handbrake = Input.GetAxis("Jump");
-            m_Car.Move(h, v, v, handbrake);
+            m_Car.Move(d2.x, d2.z, d2.z, handbrake);
 #else
-            m_Car.Move(h, v, v, 0f);
+            m_Car.Move(d2.x, d2.z, d2.z, 0f);
 #endif
         }
     }

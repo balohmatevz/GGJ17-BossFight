@@ -7,7 +7,7 @@ public class BulletEmitter : MonoBehaviour
     public const float SHOOT_INTERVAL = 4f;
     public const float MAX_ANGLE = 45f;
     public const int NUMBER_OF_SHOTS = 10;
-    public const float BULLET_FORCE = 500;
+    public const float BULLET_SPEED = 40;
     public const float BULLET_MAX_DIST = 10;
     public const float DELAY_BETWEEN_BULLETS = 0.1f;
 
@@ -15,11 +15,21 @@ public class BulletEmitter : MonoBehaviour
     public float ShootTimer = SHOOT_INTERVAL;
     public float BulletTimer = DELAY_BETWEEN_BULLETS;
 
+    public ParticleSystem BulletFire;
+    public ParticleSystem BulletFlash;
+    public GameObject BulletFireGO;
+    public ParticleSystem MuzzleFlash;
+    public GameObject MuzzleFlashGO;
+    public GameObject BulletFlashGO;
+
     // Use this for initialization
     void Start()
     {
         ShootTimer = SHOOT_INTERVAL;
         BulletTimer = DELAY_BETWEEN_BULLETS;
+        BulletFire.Stop();
+        BulletFlash.Stop();
+        MuzzleFlash.Stop();
     }
 
     // Update is called once per frame
@@ -66,6 +76,11 @@ public class BulletEmitter : MonoBehaviour
         t.SetParent(GameController.obj.BulletAnchor);
         t.position = this.transform.position;
         Bullet bullet = go.GetComponent<Bullet>();
-        bullet.SetUp(this.transform.position, rotation, BULLET_FORCE, BULLET_MAX_DIST);
+        BulletFireGO.transform.rotation = Quaternion.Euler(0, rotation, 0);
+        BulletFlashGO.transform.rotation = Quaternion.Euler(0, rotation, 0);
+        BulletFire.Emit(1);
+        BulletFlash.Emit(1);
+        MuzzleFlash.Emit(1);
+        bullet.SetUp(this.transform.position, rotation, BULLET_SPEED, BULLET_MAX_DIST);
     }
 }

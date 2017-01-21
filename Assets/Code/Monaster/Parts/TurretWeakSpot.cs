@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurretWeakSpot : MonsterPart
 {
     public GameObject TurretGO;
+    public Turret Turret;   
 
     public override void OnHit()
     {
@@ -18,6 +19,6 @@ public class TurretWeakSpot : MonsterPart
 
     public void OnDeath()
     {
-        Destroy(TurretGO);
+        Turret.OnDeath();
     }
 }
