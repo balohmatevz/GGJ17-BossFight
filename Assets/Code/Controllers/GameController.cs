@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     public int health;
     public Vector2 LastMousePos;
     public int RocketsInFlight;
+    public bool IsInRangeOfRocket = false;
 
     [Header("Scene references")]
     public Camera cam;
@@ -26,6 +27,9 @@ public class GameController : MonoBehaviour
     public GameObject TargetMarker;
     public GameObject GroundImpact;
     public ParticleSystem GroundImpactPS;
+    public CarBehaviour car;
+
+    public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
 
     [Header("Prefabs")]
     public GameObject PF_BulletFriendly;
@@ -115,6 +119,16 @@ public class GameController : MonoBehaviour
                 //RIGHT
                 camT.Translate(10 * Time.deltaTime, 0, 0, Space.Self);
             }
+        }
+
+        IsInRangeOfRocket = false;
+        foreach (RocketEmitter rem in RocketEmitters)
+        {
+            if (!rem.CanFire())
+            {
+                continue;
+            }
+            IsInRangeOfRocket |= rem.IsInRange();
         }
 
         LastMousePos = Input.mousePosition;

@@ -6,7 +6,7 @@ public class Turret : MonoBehaviour
 {
     public Animator TurretAnimator;
 
-    private bool isDead = false;
+    public bool isDead = false;
     private Collider[] colliders;
     private RocketEmitter rocketEmitter;
 

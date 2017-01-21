@@ -6,6 +6,8 @@ public class CarBehaviour : MonoBehaviour
 {
 
     public int health = 100;
+    public bool IsShooting = false;
+    public float SHOOT_THRESHOLD = 0.05f;
 
     public void OnHit(int damage)
     {
@@ -31,6 +33,13 @@ public class CarBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Mathf.Abs(Input.GetAxis("Joystick X")) > SHOOT_THRESHOLD || Mathf.Abs(Input.GetAxis("Joystick Y")) > SHOOT_THRESHOLD)
+        {
+            IsShooting = true;
+        }
+        else
+        {
+            IsShooting = false;
+        }
     }
 }

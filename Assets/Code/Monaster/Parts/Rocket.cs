@@ -71,6 +71,7 @@ public class Rocket : MonoBehaviour
         if (!IsDisabled)
         {
             IsDisabled = true;
+            GameController.obj.RocketsInFlight--;
             GameController.obj.GroundImpact.transform.position = this.transform.position;
             GameController.obj.GroundImpactPS.Play();
             Destroy(this.gameObject);

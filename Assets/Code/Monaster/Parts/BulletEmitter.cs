@@ -22,6 +22,8 @@ public class BulletEmitter : MonoBehaviour
     public ParticleSystem MuzzleFlash;
     public GameObject MuzzleFlashGO;
     public GameObject BulletFlashGO;
+    public Turret Turret;
+    public CarBehaviour Car;
 
     // Use this for initialization
     void Start()
@@ -38,6 +40,17 @@ public class BulletEmitter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Turret != null && Turret.isDead)
+        {
+            return;
+            //Dead turret
+        }
+
+        if(Car != null && !Car.IsShooting) {
+            return;
+            //Not currently shooting
+        }
+
         ShootTimer -= Time.deltaTime;
         if (ShootTimer <= 0)
         {

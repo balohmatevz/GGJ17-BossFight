@@ -446,8 +446,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757621853251584}
-  m_LocalRotation: {x: -0, y: 0.6302028, z: -0, w: 0.77643067}
-  m_LocalPosition: {x: -57.3, y: -0.24, z: -10.1}
+  m_LocalRotation: {x: 0, y: 0.5, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4855567108497398}
@@ -1118,6 +1118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurretAnimator: {fileID: 95784109720439040}
+  isDead: 0
 --- !u!114 &114261000015974064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1160,7 +1161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SHOOT_INTERVAL: 4
+  MAX_DIST_TO_FIRE: 40
   ShootTimer: 4
+  Turret: {fileID: 114157902836063938}
 --- !u!114 &114776033916049858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1206,6 +1209,8 @@ MonoBehaviour:
   MuzzleFlash: {fileID: 198681446997392438}
   MuzzleFlashGO: {fileID: 1327413421600484}
   BulletFlashGO: {fileID: 1188721785932786}
+  Turret: {fileID: 114157902836063938}
+  Car: {fileID: 0}
 --- !u!198 &198221392113302838
 ParticleSystem:
   m_ObjectHideFlags: 1
