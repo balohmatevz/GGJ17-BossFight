@@ -6,9 +6,9 @@ public class TurretWeakSpotHit : BulletHitEffect
 {
     public TurretWeakSpot WeakSpot;
 
-    public override void OnHit()
+    public override void OnHit(Bullet bullet)
     {
-        base.OnHit();
+        base.OnHit(bullet);
         WeakSpot.OnHit();
     }
 }

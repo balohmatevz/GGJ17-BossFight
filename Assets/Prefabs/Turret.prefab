@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1324183211641128
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1807192650285244
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1351960193634198}
   m_LocalRotation: {x: -0, y: -0, z: -0.0000000018626451, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.75107074, y: 2.320146, z: 0.75107074}
   m_Children: []
   m_Father: {fileID: 4937955024819720}
@@ -251,7 +251,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1324183211641128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.94}
+  m_LocalPosition: {x: -0, y: 0, z: 2.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4937955024819720}
@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8dcdb0cd6a7344aac107cb2eacabba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SHOOT_INTERVAL: 4
   ShootTimer: 4
 --- !u!114 &114603833528817754
 MonoBehaviour:
@@ -388,6 +389,7 @@ MonoBehaviour:
   DELAY_BETWEEN_BULLETS: 0.1
   ShootTimer: 4
   BulletTimer: 0.2
+  IsFriendly: 0
   BulletFire: {fileID: 198053255291873728}
   BulletFlash: {fileID: 198356968567775682}
   BulletFireGO: {fileID: 1756169304343232}

@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class RocketEmitter : MonoBehaviour
 {
-    public const float SHOOT_INTERVAL = 1.5f;
-    public const float BULLET_FORCE = 100;
-    public const float BULLET_MAX_DIST = 10;
+    public float SHOOT_INTERVAL = 1.5f;
 
-    public float ShootTimer = SHOOT_INTERVAL;
+    public float ShootTimer;
 
     // Use this for initialization
     void Start()
@@ -39,7 +37,7 @@ public class RocketEmitter : MonoBehaviour
         t.SetParent(GameController.obj.BulletAnchor);
         t.position = this.transform.position;
         Rocket rocket = go.GetComponent<Rocket>();
-		rocket.SetUp(this.transform.position, this.transform.forward, target);
+        rocket.SetUp(this.transform.position, this.transform.forward, target);
         GameController.obj.RocketsInFlight++;
     }
 }

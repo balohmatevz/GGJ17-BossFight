@@ -58,13 +58,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other is WheelCollider)
+        {
+            return;
+        }
+
         if (!IsDisabled && other.gameObject != null)
         {
             OnHit();
             BulletHitEffect hitEffect = other.gameObject.GetComponent<BulletHitEffect>();
             if (hitEffect != null)
             {
-                hitEffect.OnHit();
+                hitEffect.OnHit(this);
             }
         }
     }

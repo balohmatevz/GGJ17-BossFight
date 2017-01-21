@@ -7,32 +7,9 @@ public class CarBehaviour : MonoBehaviour
 
     public int health = 100;
 
-    private void OnTriggerEnter(Collider other)
+    public void OnHit(int damage)
     {
-        if (other.gameObject != null)
-        {
-            Bullet bullet = other.gameObject.GetComponent<Bullet>();
-            if (bullet != null)
-            {
-                //It was a bullet!
-                if (bullet.IsFriendly)
-                {
-                    //It's a friendly bullet! No biggie :D
-                    //NOOP
-                }
-                else
-                {
-                    //Oh no! It's an ENEMY bullet :o
-                    OnHit();
-                }
-            }
-        }
-
-    }
-
-    public void OnHit()
-    {
-        health -= 1;
+        health -= damage;
         if (health <= 0)
         {
             OnDeath();

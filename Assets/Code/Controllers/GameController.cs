@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
     public Transform camT;
     public Transform BulletAnchor;
     public GameObject TargetMarker;
+    public GameObject GroundImpact;
+    public ParticleSystem GroundImpactPS;
 
     [Header("Prefabs")]
     public GameObject PF_BulletFriendly;
@@ -61,6 +63,7 @@ public class GameController : MonoBehaviour
         health = MONSTER_HEALTH;
         LastMousePos = Input.mousePosition;
         RocketsInFlight = 0;
+        GameController.obj.GroundImpactPS.Stop();
     }
 
     public void Frame()

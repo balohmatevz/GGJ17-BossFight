@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4030527589613110}
   - component: {fileID: 198586247090487046}
   - component: {fileID: 199218786298681070}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23905139148135980}
   - component: {fileID: 54878248544510912}
   - component: {fileID: 114787201777913228}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4164946123845440}
   - component: {fileID: 33429702017301646}
   - component: {fileID: 23078871417820678}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4959350677765724}
   - component: {fileID: 198506795633976562}
   - component: {fileID: 199888942381669542}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 33255206115817808}
   - component: {fileID: 65743518021211464}
   - component: {fileID: 23554810990266974}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585487951902448}
   m_LocalRotation: {x: -0.44629604, y: -0, z: -0, w: 0.8948854}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: -15.15, y: 1.73, z: 8.83}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4164946123845440}
@@ -351,6 +351,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   SPEED: 0.6
   t: {fileID: 0}
+  IsDisabled: 1
 --- !u!135 &135892595796593998
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -358,7 +359,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585487951902448}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
