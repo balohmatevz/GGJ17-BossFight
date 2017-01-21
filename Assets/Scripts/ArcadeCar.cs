@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class ArcadeCar : MonoBehaviour
 {
@@ -36,10 +35,10 @@ public class ArcadeCar : MonoBehaviour
     private void FixedUpdate()
     {
         // pass the input to the car!
-        float h = CrossPlatformInputManager.GetAxis("Horizontal");
-        float v = CrossPlatformInputManager.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 #if !MOBILE_INPUT
-        float handbrake = CrossPlatformInputManager.GetAxis("Jump");
+        float handbrake = Input.GetAxis("Jump");
         Move(h, v, handbrake);
 #else
         Move(h, v, 0f);
