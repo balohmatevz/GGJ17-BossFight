@@ -15,11 +15,11 @@ TagManager:
   - 
   - Bullet
   - BulletWillCollide
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BulletFriendly
+  - BulletEnemy
+  - CollidesWithFriendly
+  - CollidesWithEnemy
+  - CollidesWithAll
   - 
   - 
   - 

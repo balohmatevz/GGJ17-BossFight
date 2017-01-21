@@ -14,6 +14,7 @@ public class BulletEmitter : MonoBehaviour
     List<float> bulletRotations = new List<float>();
     public float ShootTimer;
     public float BulletTimer;
+    public bool IsFriendly = false;
 
     public ParticleSystem BulletFire;
     public ParticleSystem BulletFlash;
@@ -73,7 +74,15 @@ public class BulletEmitter : MonoBehaviour
 
     public void SpawnBullet(float rotation)
     {
-        GameObject go = Instantiate(GameController.obj.PF_Bullet);
+        GameObject go;
+        if (IsFriendly)
+        {
+            go = Instantiate(GameController.obj.PF_BulletFriendly);
+        }
+        else
+        {
+            go = Instantiate(GameController.obj.PF_BulletEnemy);
+        }
         Transform t = go.transform;
         t.SetParent(GameController.obj.BulletAnchor);
         t.position = this.transform.position;

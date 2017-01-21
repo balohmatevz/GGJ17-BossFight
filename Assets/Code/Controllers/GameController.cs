@@ -26,7 +26,8 @@ public class GameController : MonoBehaviour
     public GameObject TargetMarker;
 
     [Header("Prefabs")]
-    public GameObject PF_Bullet;
+    public GameObject PF_BulletFriendly;
+    public GameObject PF_BulletEnemy;
     public GameObject PF_Rocket;
 
     #endregion PUBLIC MEMBERS

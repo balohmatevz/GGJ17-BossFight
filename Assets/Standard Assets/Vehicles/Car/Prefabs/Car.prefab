@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 3300018}
   - component: {fileID: 6500000}
   - component: {fileID: 2300018}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ColliderFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3300026}
   - component: {fileID: 6500002}
   - component: {fileID: 2300026}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ColliderBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3300030}
   - component: {fileID: 6500004}
   - component: {fileID: 2300030}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ColliderBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400038}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100042}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.98442054, z: -0, w: 0.17583027}
   m_LocalPosition: {x: -0.75, y: -0.02, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -528,7 +528,7 @@ Transform:
   - {fileID: 4506802952944276}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 159.746, z: 0}
 --- !u!4 &400062
 Transform:
   m_ObjectHideFlags: 1
@@ -4047,7 +4047,7 @@ GameObject:
   m_Layer: 0
   m_Name: Bullet Emitter
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -4087464717476244675, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4849,10 +4849,11 @@ MonoBehaviour:
   SHOOT_INTERVAL: 0.1
   MAX_ANGLE: 0
   NUMBER_OF_SHOTS: 1
-  BULLET_MAX_DIST: 10
+  BULLET_MAX_DIST: 100
   DELAY_BETWEEN_BULLETS: 0
   ShootTimer: 4
   BulletTimer: 0.2
+  IsFriendly: 1
   BulletFire: {fileID: 198479442490724282}
   BulletFlash: {fileID: 198992132234080276}
   BulletFireGO: {fileID: 1463401178329366}
@@ -19850,9 +19851,9 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}
@@ -19900,7 +19901,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     m_Bounce:
-      scalar: 1
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19939,7 +19940,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     m_EnergyLossOnCollision:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19982,7 +19983,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 512
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -19999,7 +20000,7 @@ ParticleSystem:
     collisionShape5: {fileID: 0}
     inside: 1
     outside: 0
-    enter: 0
+    enter: 1
     exit: 0
     radiusScale: 1
   SubModule:
