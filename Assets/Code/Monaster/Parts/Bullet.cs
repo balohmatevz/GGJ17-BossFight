@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     public float Speed;
     public bool IsDisabled = true;
 
+    public bool IsFriendly = false;
     public Transform t;
     public Rigidbody rb;
 

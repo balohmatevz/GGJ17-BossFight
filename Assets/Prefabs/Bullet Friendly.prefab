@@ -234,6 +234,7 @@ MonoBehaviour:
   maxDist: 0
   Speed: 0
   IsDisabled: 1
+  IsFriendly: 1
   t: {fileID: 0}
   rb: {fileID: 0}
   Death: {fileID: 198669970430049982}

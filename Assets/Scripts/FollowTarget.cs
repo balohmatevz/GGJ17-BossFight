@@ -10,13 +10,16 @@ public class FollowTarget : MonoBehaviour
 
     void Awake()
     {
-            
+
     }
-    
+
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        float newZ = Target.position.z - DesiredDistance;
-        transform.position = new Vector3(Target.position.x, transform.position.y, newZ);
+        if (Target != null)
+        {
+            float newZ = Target.position.z - DesiredDistance;
+            transform.position = new Vector3(Target.position.x, transform.position.y, newZ);
+        }
     }
 }

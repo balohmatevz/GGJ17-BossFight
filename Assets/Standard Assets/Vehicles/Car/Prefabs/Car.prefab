@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 11400022}
   - component: {fileID: 11400024}
   - component: {fileID: 114052198223521720}
+  - component: {fileID: 114435526664794614}
   m_Layer: 0
   m_Name: Car
   m_TagString: Player
@@ -4862,6 +4863,18 @@ MonoBehaviour:
   MuzzleFlash: {fileID: 198363603591676212}
   MuzzleFlashGO: {fileID: 1052251400995584}
   BulletFlashGO: {fileID: 1289097296358882}
+--- !u!114 &114435526664794614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61772843c7e00ba40a7553b851b74208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!124 &124415164280782506
 Behaviour:
   m_ObjectHideFlags: 1
