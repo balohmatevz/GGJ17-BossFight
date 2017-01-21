@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//#define DEV_MODE
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,19 +18,20 @@ public class GunController : MonoBehaviour
 
     [Header("References")]
     public Transform Gun;
+    public ParticleSystem GunParticleSystem;
 
     [Header("Prefabs")]
     public GameObject ProjectilePrefab;
 
     [Header("Variables")]
     public float RotationSpeed = 100f;
-    public float RechargeTime = 0.1f;
 
     #endregion Public Members
 
     #region Private Members
 
     private float lastFireTime = 0f;
+    private bool isFiring = false;
     
     #endregion Private Members
     
@@ -40,26 +43,48 @@ public class GunController : MonoBehaviour
         float h = Input.GetAxis("Joystick X");
         float v = Input.GetAxis("Joystick Y");
 
+        var dir = new Vector3(h, 0f, v);
+
         // Add some tolerance to prevent the gun from moving when releasing the analog stick
         if (Mathf.Abs(h) > TOLERANCE || Mathf.Abs(v) > TOLERANCE)
         {
             var direction = new Vector2(h, v);
             float angle = Mathf.Sign(h) * Vector2.Angle(stickUp, direction);
-            Gun.localEulerAngles = new Vector3(0, 0, angle);            
+            Gun.eulerAngles = new Vector3(0, angle, 0);
+
+            // if there is directional input we autofire
+            isFiring = true;
+        }
+        else
+        {
+            // if there is no directional we should NOT fire
+            isFiring = false;
         }
 
-        if (Input.GetAxis("Right Trigger") > 0.5f)
+        if (isFiring)
         {
-            if (time - lastFireTime > RechargeTime)
+            // TODO: Fire projectiles
+        }
+        else
+        {
+
+        }
+
+#if DEV_MODE
+        if (GunParticleSystem != null)
+        {
+            if (isFiring)
             {
-                lastFireTime = time;
-                Fire();
+                if (!GunParticleSystem.isPlaying)
+                {
+                    GunParticleSystem.Play();
+                }
+            }
+            else
+            {
+                GunParticleSystem.Stop();
             }
         }
-    }
-
-    private void Fire()
-    {
-        // TODO: Fire projectiles
+#endif
     }
 }
