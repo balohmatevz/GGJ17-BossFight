@@ -1,6 +1,4 @@
-﻿//#define DEV_MODE
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,14 +20,9 @@ public class GunController : MonoBehaviour
 
     [Header("Variables")]
     public float RotationSmoothing = 0.1f;
+    public bool IsShooting = false;
 
     #endregion Public Members
-
-    #region Private Members
-
-    private bool isFiring = false;
-    
-    #endregion Private Members
     
     void Update()
     {
@@ -52,38 +45,12 @@ public class GunController : MonoBehaviour
             Gun.rotation = Quaternion.Lerp(lastRotation, Gun.rotation, RotationSmoothing);
 
             // if there is directional input we autofire
-            isFiring = true;
+            IsShooting = true;
         }
         else
         {
             // if there is no directional we should NOT fire
-            isFiring = false;
+            IsShooting = false;
         }
-
-        if (isFiring)
-        {
-            // TODO: Fire projectiles
-        }
-        else
-        {
-
-        }
-
-#if DEV_MODE
-        if (GunParticleSystem != null)
-        {
-            if (isFiring)
-            {
-                if (!GunParticleSystem.isPlaying)
-                {
-                    GunParticleSystem.Play();
-                }
-            }
-            else
-            {
-                GunParticleSystem.Stop();
-            }
-        }
-#endif
     }
 }
