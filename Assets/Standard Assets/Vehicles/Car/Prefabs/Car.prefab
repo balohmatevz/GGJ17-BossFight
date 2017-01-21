@@ -4852,6 +4852,7 @@ MonoBehaviour:
   Gun: {fileID: 4658170663454834}
   GunParticleSystem: {fileID: 198544571966890286}
   RotationSmoothing: 0.1
+  IsShooting: 0
 --- !u!114 &114182990496359044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4878,7 +4879,7 @@ MonoBehaviour:
   SHOOT_INTERVAL: 0.1
   MAX_ANGLE: 0
   NUMBER_OF_SHOTS: 1
-  BULLET_MAX_DIST: 100
+  BULLET_MAX_DIST: 25
   DELAY_BETWEEN_BULLETS: 0
   ShootTimer: 4
   BulletTimer: 0.2
@@ -4903,7 +4904,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  IsShooting: 0
   SHOOT_THRESHOLD: 0.05
 --- !u!114 &114930614315424482
 MonoBehaviour:
