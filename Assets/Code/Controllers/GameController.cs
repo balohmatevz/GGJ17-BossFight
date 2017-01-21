@@ -56,6 +56,9 @@ public class GameController : MonoBehaviour
     public Animator WormStage1Animator;
     public float WormStage1Timer = 5f;
     public float WormStage1Timer2 = 5f;
+    public float WormStage2TimerHealthy = 2.13333f;
+    public float WormStage2TimerWounded = 5f;
+    public float WormStage2TimerRetracting = 5f;
 
     [Header("Prefabs")]
     public GameObject PF_BulletFriendly;
@@ -208,25 +211,55 @@ public class GameController : MonoBehaviour
                         break;
                     case Stage2Parts.MOVING:
                         Stage2MoveTimer -= Time.deltaTime;
+                        WormStage2TimerHealthy = 5f;
+                        WormStage2TimerWounded = 5f;
+                        WormStage2TimerRetracting = 1.8f;
+                        Stage2WormAnim.Rebind();
+                        Stage2WormAnim.SetBool("HasRecovered", false);
                         if (Stage2MoveTimer <= 0)
                         {
                             CurrentStage2Part = Stage2Parts.POP_OUT;
                             Stage2MoveParticlesPS.Stop();
                             Stage2Worm.SetActive(true);
-                            //Stage2WormAnim.SetBool("", false);
+                            if (Random.Range(0f, 1f) < 0.5f)
+                            {
+                                Stage2WormAnim.SetBool("Bombed", true); //TODO
+                                CurrentStage2Part = Stage2Parts.OUT_WOUNDED;
+                            }
+                            else
+                            {
+                                Stage2WormAnim.SetBool("Bombed", false); //TODO
+                                CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
+                            }
                         }
                         break;
                     case Stage2Parts.POP_OUT:
 
                         break;
                     case Stage2Parts.OUT_HEALTHY:
-
+                        WormStage2TimerHealthy -= Time.deltaTime;
+                        if (WormStage2TimerHealthy <= 0)
+                        {
+                            CurrentStage2Part = Stage2Parts.RETRACTING;
+                            Stage2WormAnim.Stop();
+                        }
                         break;
                     case Stage2Parts.OUT_WOUNDED:
-
+                        WormStage2TimerWounded -= Time.deltaTime;
+                        if (WormStage2TimerWounded <= 0)
+                        {
+                            Stage2WormAnim.SetBool("HasRecovered", true);
+                            CurrentStage2Part = Stage2Parts.RETRACTING;
+                        }
                         break;
                     case Stage2Parts.RETRACTING:
-
+                        WormStage2TimerRetracting -= Time.deltaTime;
+                        if (WormStage2TimerRetracting <= 0)
+                        {
+                            Stage2WormAnim.SetBool("HasRecovered", false);
+                            Stage2WormAnim.Stop();
+                            CurrentStage2Part = Stage2Parts.START;
+                        }
                         break;
                 }
                 break;
