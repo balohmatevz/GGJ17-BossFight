@@ -9,6 +9,8 @@ namespace UnityStandardAssets.Vehicles.Car
         public Transform SkidTrailPrefab;
         public static Transform skidTrailsDetachedParent;
         public ParticleSystem skidParticles;
+        public bool PlaySkidSoundEffect = false;
+
         public bool skidding { get; private set; }
         public bool PlayingAudio { get; private set; }
 
@@ -55,15 +57,21 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void PlayAudio()
         {
-            m_AudioSource.Play();
-            PlayingAudio = true;
+            if (PlaySkidSoundEffect)
+            {
+                m_AudioSource.Play();
+                PlayingAudio = true;
+            }
         }
 
 
         public void StopAudio()
         {
-            m_AudioSource.Stop();
-            PlayingAudio = false;
+            if (PlaySkidSoundEffect)
+            {
+                m_AudioSource.Stop();
+                PlayingAudio = false;
+            }
         }
 
 

@@ -170,8 +170,8 @@ namespace UnityStandardAssets.Vehicles.Car
             GearChanging();
 
             AddDownForce();
-            CheckForWheelSpin();
-            TractionControl();
+            //CheckForWheelSpin();
+            //TractionControl();
         }
 
 
@@ -304,55 +304,55 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
         // crude traction control that reduces the power to wheel if the car is wheel spinning too much
-        private void TractionControl()
-        {
-            WheelHit wheelHit;
-            switch (m_CarDriveType)
-            {
-                case CarDriveType.FourWheelDrive:
-                    // loop through all wheels
-                    for (int i = 0; i < 4; i++)
-                    {
-                        m_WheelColliders[i].GetGroundHit(out wheelHit);
+        //private void TractionControl()
+        //{
+        //    WheelHit wheelHit;
+        //    switch (m_CarDriveType)
+        //    {
+        //        case CarDriveType.FourWheelDrive:
+        //            // loop through all wheels
+        //            for (int i = 0; i < 4; i++)
+        //            {
+        //                m_WheelColliders[i].GetGroundHit(out wheelHit);
 
-                        AdjustTorque(wheelHit.forwardSlip);
-                    }
-                    break;
+        //                AdjustTorque(wheelHit.forwardSlip);
+        //            }
+        //            break;
 
-                case CarDriveType.RearWheelDrive:
-                    m_WheelColliders[2].GetGroundHit(out wheelHit);
-                    AdjustTorque(wheelHit.forwardSlip);
+        //        case CarDriveType.RearWheelDrive:
+        //            m_WheelColliders[2].GetGroundHit(out wheelHit);
+        //            AdjustTorque(wheelHit.forwardSlip);
 
-                    m_WheelColliders[3].GetGroundHit(out wheelHit);
-                    AdjustTorque(wheelHit.forwardSlip);
-                    break;
+        //            m_WheelColliders[3].GetGroundHit(out wheelHit);
+        //            AdjustTorque(wheelHit.forwardSlip);
+        //            break;
 
-                case CarDriveType.FrontWheelDrive:
-                    m_WheelColliders[0].GetGroundHit(out wheelHit);
-                    AdjustTorque(wheelHit.forwardSlip);
+        //        case CarDriveType.FrontWheelDrive:
+        //            m_WheelColliders[0].GetGroundHit(out wheelHit);
+        //            AdjustTorque(wheelHit.forwardSlip);
 
-                    m_WheelColliders[1].GetGroundHit(out wheelHit);
-                    AdjustTorque(wheelHit.forwardSlip);
-                    break;
-            }
-        }
+        //            m_WheelColliders[1].GetGroundHit(out wheelHit);
+        //            AdjustTorque(wheelHit.forwardSlip);
+        //            break;
+        //    }
+        //}
 
 
-        private void AdjustTorque(float forwardSlip)
-        {
-            if (forwardSlip >= m_SlipLimit && m_CurrentTorque >= 0)
-            {
-                m_CurrentTorque -= 10 * m_TractionControl;
-            }
-            else
-            {
-                m_CurrentTorque += 10 * m_TractionControl;
-                if (m_CurrentTorque > m_FullTorqueOverAllWheels)
-                {
-                    m_CurrentTorque = m_FullTorqueOverAllWheels;
-                }
-            }
-        }
+        //private void AdjustTorque(float forwardSlip)
+        //{
+        //    if (forwardSlip >= m_SlipLimit && m_CurrentTorque >= 0)
+        //    {
+        //        m_CurrentTorque -= 10 * m_TractionControl;
+        //    }
+        //    else
+        //    {
+        //        m_CurrentTorque += 10 * m_TractionControl;
+        //        if (m_CurrentTorque > m_FullTorqueOverAllWheels)
+        //        {
+        //            m_CurrentTorque = m_FullTorqueOverAllWheels;
+        //        }
+        //    }
+        //}
 
 
         private bool AnySkidSoundPlaying()
