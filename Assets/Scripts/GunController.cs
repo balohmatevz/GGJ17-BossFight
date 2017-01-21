@@ -30,7 +30,6 @@ public class GunController : MonoBehaviour
 
     #region Private Members
 
-    private float lastFireTime = 0f;
     private bool isFiring = false;
     
     #endregion Private Members
@@ -41,9 +40,7 @@ public class GunController : MonoBehaviour
         float deltaTime = Time.deltaTime;
 
         float h = Input.GetAxis("Joystick X");
-        float v = Input.GetAxis("Joystick Y");
-
-        var dir = new Vector3(h, 0f, v);
+        float v = Input.GetAxis("Joystick Y");        
 
         // Add some tolerance to prevent the gun from moving when releasing the analog stick
         if (Mathf.Abs(h) > TOLERANCE || Mathf.Abs(v) > TOLERANCE)

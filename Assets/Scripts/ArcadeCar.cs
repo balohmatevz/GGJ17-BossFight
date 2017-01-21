@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArcadeCar : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
 
     public ForceMode ForceMode = ForceMode.Acceleration;
     public float ForceAmount = 20f;
