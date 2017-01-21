@@ -4834,7 +4834,7 @@ MonoBehaviour:
   Gun: {fileID: 4658170663454834}
   GunParticleSystem: {fileID: 198544571966890286}
   ProjectilePrefab: {fileID: 0}
-  RotationSpeed: 100
+  RotationSmoothing: 0.1
 --- !u!114 &114317449521793878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7508,10 +7508,10 @@ ParticleSystem:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minMaxState: 0
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -151149510
+  randomSeed: -1236154286
   InitialModule:
     serializedVersion: 3
     enabled: 1
