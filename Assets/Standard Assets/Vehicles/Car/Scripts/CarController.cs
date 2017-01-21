@@ -129,7 +129,7 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
 
-        public void Move(float steering, float accel, float footbrake, float handbrake)
+        public void Move(float steering, float accel, float footbrake, float handbrake, bool reverse)
         {
             for (int i = 0; i < 4; i++)
             {
@@ -153,7 +153,7 @@ namespace UnityStandardAssets.Vehicles.Car
             m_WheelColliders[1].steerAngle = m_SteerAngle;
 
             SteerHelper();
-            ApplyDrive(accel, footbrake);
+            ApplyDrive(accel, footbrake, reverse);
             CapSpeed();
 
             //Set the handbrake.
@@ -196,7 +196,7 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
 
-        private void ApplyDrive(float accel, float footbrake)
+        private void ApplyDrive(float accel, float footbrake, bool reverse)
         {
 
             float thrustTorque;
@@ -224,11 +224,19 @@ namespace UnityStandardAssets.Vehicles.Car
 
             for (int i = 0; i < 4; i++)
             {
-                if (footbrake > 0.8f)
+                if (reverse)
                 {
-                    m_WheelColliders[i].motorTorque = 0;
+                    m_WheelColliders[i].brakeTorque = 0f;
+                    m_WheelColliders[i].motorTorque = -m_ReverseTorque * footbrake;
                 }
-                m_WheelColliders[i].brakeTorque = m_BrakeTorque * footbrake;
+                else
+                {
+                    if (footbrake > 0.8f)
+                    {
+                        m_WheelColliders[i].motorTorque = 0;
+                    }
+                    m_WheelColliders[i].brakeTorque = m_BrakeTorque * footbrake;
+                }
 
                 //if (CurrentSpeed > 5 && Vector3.Angle(transform.forward, m_Rigidbody.velocity) < 50f)
                 //{
