@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
     public CarBehaviour car;
 
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
+    public GameObject WorkStage1;
 
     [Header("Prefabs")]
     public GameObject PF_BulletFriendly;
@@ -190,6 +191,7 @@ public class GameController : MonoBehaviour
     {
         //TODO
         GameStage = GameStages.INTRODUCTION;
+        WorkStage1.SetActive(true);
     }
 
     public void EndIntroduction()
@@ -202,5 +204,6 @@ public class GameController : MonoBehaviour
     {
         //TODO
         GameStage = GameStages.TRANSITION_TO_STAGE_2;
+        WorkStage1.SetActive(false);
     }
 }
