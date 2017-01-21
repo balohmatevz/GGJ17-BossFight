@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class CarHitEffect : BulletHitEffect
 {
+    // Car has 100 HP
+    const int BULLET_HIT = 20;
+    const int BULLET_ROCKET = 60;
 
     public CarBehaviour car;
 
     public override void OnHit(Bullet bullet)
     {
         base.OnHit(bullet);
-        car.OnHit(1);
+        car.OnHit(BULLET_HIT);
     }
 
     public override void OnHit(Rocket rocket)
     {
         base.OnHit(rocket);
-        car.OnHit(10);
+        car.OnHit(BULLET_ROCKET);
     }
 
 }
