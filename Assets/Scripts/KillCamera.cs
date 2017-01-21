@@ -5,6 +5,7 @@ using UnityEngine;
 public class KillCamera : MonoBehaviour
 {
     public Transform Target;
+    public Transform TargetToRotate;
     public float DesiredDistance = 25f;
     public float Smoothing = 0.1f;
 
@@ -16,6 +17,12 @@ public class KillCamera : MonoBehaviour
     {
         desiredRotation = Quaternion.LookRotation(Target.position - transform.position, Vector3.up);
         desiredHeight = Target.position.y;
+
+        float angle = Mathf.Sign(Target.position.x) * Vector3.Angle(Vector3.forward, Target.position);
+        TargetToRotate.rotation = Quaternion.Euler(
+            TargetToRotate.rotation.eulerAngles.x,
+            angle,
+            TargetToRotate.rotation.eulerAngles.z);
     }
 
     // Update is called once per frame
