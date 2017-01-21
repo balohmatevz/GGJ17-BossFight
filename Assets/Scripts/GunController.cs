@@ -24,7 +24,7 @@ public class GunController : MonoBehaviour
     public GameObject ProjectilePrefab;
 
     [Header("Variables")]
-    public float RotationSpeed = 100f;
+    public float RotationSmoothing = 0.1f;
 
     #endregion Public Members
 
@@ -48,9 +48,14 @@ public class GunController : MonoBehaviour
         // Add some tolerance to prevent the gun from moving when releasing the analog stick
         if (Mathf.Abs(h) > TOLERANCE || Mathf.Abs(v) > TOLERANCE)
         {
+            var lastRotation = Gun.rotation;
+
             var direction = new Vector2(h, v);
-            float angle = Mathf.Sign(h) * Vector2.Angle(stickUp, direction);
-            Gun.eulerAngles = new Vector3(0, angle, 0);
+            float newAngle = Mathf.Sign(h) * Vector2.Angle(stickUp, direction);
+            var desiredAngles = new Vector3(0, newAngle, 0);
+
+            Gun.eulerAngles = desiredAngles;
+            Gun.rotation = Quaternion.Lerp(lastRotation, Gun.rotation, RotationSmoothing);
 
             // if there is directional input we autofire
             isFiring = true;
