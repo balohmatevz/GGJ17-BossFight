@@ -47,13 +47,20 @@ public class Bullet : MonoBehaviour
         this.origin = origin;
         this.maxDist = maxDist;
         IsDisabled = false;
+        Death.transform.localRotation = Quaternion.identity;
+        Hole.transform.localRotation = Quaternion.identity;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!IsDisabled)
+        if (!IsDisabled && other.gameObject != null)
         {
             OnHit();
+            BulletHitEffect hitEffect = other.gameObject.GetComponent<BulletHitEffect>();
+            if (hitEffect != null)
+            {
+                hitEffect.OnHit();
+            }
         }
     }
 
