@@ -31,7 +31,7 @@ public class Turret : MonoBehaviour
         {
             isDead = true;
             rocketEmitter.enabled = false;
-            Invoke("DisableColliders", 5f);
+            Invoke("DisableColliders", 6f);
         }
     }
 
