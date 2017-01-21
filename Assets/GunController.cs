@@ -4,36 +4,62 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    const float TOLERANCE = 0.1f;
+    #region Constants
+
+    const float TOLERANCE = 0.4f;
+
+    #endregion Constants
+
+    #region Public Members
 
     private static Vector2 stickUp = new Vector2(0, 1);
 
+    [Header("References")]
     public Transform Gun;
-    public float RotationSpeed = 100f;
 
-    void Awake() {
-        
-    }
+    [Header("Prefabs")]
+    public GameObject ProjectilePrefab;
+
+    [Header("Variables")]
+    public float RotationSpeed = 100f;
+    public float RechargeTime = 0.1f;
+
+    #endregion Public Members
+
+    #region Private Members
+
+    private float lastFireTime = 0f;
+    
+    #endregion Private Members
     
     void Update ()
     {
-        //float deltaTime = Time.deltaTime;
+        float time = Time.time;
+        float deltaTime = Time.deltaTime;
 
-        //Gun.Rotate(transform.forward, RotationSpeed * deltaTime);
+        float h = Input.GetAxis("Joystick X");
+        float v = Input.GetAxis("Joystick Y");
 
-        //float h = Input.GetAxis("Joystick X");
-        //float v = Input.GetAxis("Joystick Y");
+        // Add some tolerance to prevent the gun from moving when releasing the analog stick
+        if (Mathf.Abs(h) > TOLERANCE || Mathf.Abs(v) > TOLERANCE)
+        {
+            var direction = new Vector2(h, v);
+            float angle = Mathf.Sign(h) * Vector2.Angle(stickUp, direction);
+            Gun.localEulerAngles = new Vector3(0, 0, angle);            
+        }
 
-        //float h = Input.GetAxis("Horizontal");
-        //float v = Input.GetAxis("Vertical");
+        if (Input.GetAxis("Right Trigger") > 0.5f)
+        {
+            if (time - lastFireTime > RechargeTime)
+            {
+                lastFireTime = time;
+                Fire();
+            }
+        }
+    }
 
-        //var direction = new Vector3(h, v, 0f);
-        //float angle = Vector2.Angle(stickUp, direction);
-
-        //if (Mathf.Abs(h) > TOLERANCE || Mathf.Abs(v) > TOLERANCE)
-        //{
-        //    Debug.Log("h/v: " + h + "," + v);
-        //    Debug.Log("Angle: " + angle);
-        //}
+    private void Fire()
+    {
+        // TODO: Fire projectiles
     }
 }
