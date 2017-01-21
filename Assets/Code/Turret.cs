@@ -15,6 +15,7 @@ public class Turret : MonoBehaviour
     {
         colliders = GetComponentsInChildren<Collider>();
         rocketEmitter = GetComponentInChildren<RocketEmitter>();
+        GameController.obj.Turrets.Add(this);
     }
 
     // Update is called once per frame
@@ -26,6 +27,11 @@ public class Turret : MonoBehaviour
     public void OnDeath()
     {
         TurretAnimator.SetBool("Destroyed", true);
+
+        if (GameController.obj.Turrets.Contains(this))
+        {
+            GameController.obj.Turrets.Remove(this);
+        }
 
         if (!isDead)
         {

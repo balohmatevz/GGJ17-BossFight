@@ -6,6 +6,11 @@ public class GameController : MonoBehaviour
 {
     public static GameController obj;
 
+    public enum GameStages
+    {
+        INIT, INTRODUCTION, STAGE_1, TRANSITION_TO_STAGE_2, STAGE_2
+    }
+
     #region CONSTANTS
 
     public const int MONSTER_HEALTH = 100;
@@ -19,6 +24,8 @@ public class GameController : MonoBehaviour
     public Vector2 LastMousePos;
     public int RocketsInFlight;
     public bool IsInRangeOfRocket = false;
+    public List<Turret> Turrets = new List<Turret>();
+    public GameStages GameStage = GameStages.INIT;
 
     [Header("Scene references")]
     public Camera cam;
@@ -68,6 +75,7 @@ public class GameController : MonoBehaviour
         LastMousePos = Input.mousePosition;
         RocketsInFlight = 0;
         GameController.obj.GroundImpactPS.Stop();
+        PlayIntroduction();
     }
 
     public void Frame()
@@ -122,13 +130,38 @@ public class GameController : MonoBehaviour
         }
 
         IsInRangeOfRocket = false;
-        foreach (RocketEmitter rem in RocketEmitters)
+
+        switch (GameStage)
         {
-            if (!rem.CanFire())
-            {
-                continue;
-            }
-            IsInRangeOfRocket |= rem.IsInRange();
+            case GameStages.INTRODUCTION:
+                EndIntroduction();  //TODO
+                break;
+            case GameStages.STAGE_1:
+                foreach (RocketEmitter rem in RocketEmitters)
+                {
+                    if (!rem.CanFire())
+                    {
+                        continue;
+                    }
+                    IsInRangeOfRocket |= rem.IsInRange();
+                }
+
+                if (Turrets.Count <= 3)
+                {
+                    TransitionToStage2();
+                }
+                break;
+            case GameStages.TRANSITION_TO_STAGE_2:
+                int i = 0;
+                while (i < Turrets.Count)
+                {
+                    Turrets[i].OnDeath();
+                }
+                //TODO
+                break;
+            case GameStages.STAGE_2:
+                //TODO
+                break;
         }
 
         LastMousePos = Input.mousePosition;
@@ -151,5 +184,23 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PlayIntroduction()
+    {
+        //TODO
+        GameStage = GameStages.INTRODUCTION;
+    }
+
+    public void EndIntroduction()
+    {
+        //TODO
+        GameStage = GameStages.STAGE_1;
+    }
+
+    public void TransitionToStage2()
+    {
+        //TODO
+        GameStage = GameStages.TRANSITION_TO_STAGE_2;
     }
 }
