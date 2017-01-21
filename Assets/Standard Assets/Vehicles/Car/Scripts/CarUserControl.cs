@@ -26,14 +26,24 @@ namespace UnityStandardAssets.Vehicles.Car
             var dir = new Vector3(h, 0f, v);
             var d2 = Quaternion.Inverse(m_Car.transform.rotation) * dir;
 
-            //Debug.DrawLine(m_Car.transform.position, m_Car.transform.position + dir * 2f, Color.red);
-            //Debug.DrawLine(m_Car.transform.position, m_Car.transform.position + d2 * 2f, Color.magenta);
+            float brake = 0f;
+            if (dir.magnitude > 0.5f && d2.z < -0.2f)
+            {
+                //Debug.Log("Reverse!");
+                d2 = new Vector3(Mathf.Sign(d2.x), 0f, 1f);
+            }
+            else if (dir.magnitude < 0.1f)
+            {
+                //Debug.Log("Braking!");
+                d2 = new Vector3(Mathf.Sign(d2.x) * d2.x, 0f, 0f);
+                brake = -1.0f;
+            }
 
 #if !MOBILE_INPUT
             float handbrake = Input.GetAxis("Jump");
-            m_Car.Move(d2.x, d2.z, d2.z, handbrake);
+            m_Car.Move(d2.x, d2.z, brake, handbrake);
 #else
-            m_Car.Move(d2.x, d2.z, d2.z, 0f);
+            m_Car.Move(d2.x, d2.z, brake, 0f);
 #endif
         }
     }
