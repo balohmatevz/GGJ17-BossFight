@@ -234,8 +234,9 @@ MonoBehaviour:
   maxDist: 0
   Speed: 0
   IsDisabled: 1
-  t: {fileID: 0}
-  rb: {fileID: 0}
+  IsFriendly: 0
+  t: {fileID: 4776889918805632}
+  rb: {fileID: 54286904563679162}
   Death: {fileID: 198711681776607436}
   Hole: {fileID: 198427296889319688}
   DeathGO: {fileID: 1529837719942320}
