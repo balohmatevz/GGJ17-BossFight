@@ -30,6 +30,7 @@ public class CarBehaviour : MonoBehaviour
     public void OnDeath()
     {
         Destroy(this.gameObject);
+        GameController.obj.OnPlayerDeath();
     }
 
     // Use this for initialization

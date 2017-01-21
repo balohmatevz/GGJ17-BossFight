@@ -15,10 +15,16 @@ public class KillCamera : MonoBehaviour
 
     void Start()
     {
+        var follow = GetComponent<FollowTarget>();
+        if (follow != null)
+        {
+            follow.enabled = false;
+        }
+
         desiredRotation = Quaternion.LookRotation(Target.position - transform.position, Vector3.up);
         desiredHeight = Target.position.y;
 
-        float angle = Mathf.Sign(Target.position.x) * Vector3.Angle(Vector3.forward, Target.position);
+        float angle = Mathf.Sign(transform.position.x) * Vector3.Angle(Vector3.forward, transform.position);
         TargetToRotate.rotation = Quaternion.Euler(
             TargetToRotate.rotation.eulerAngles.x,
             angle,

@@ -30,7 +30,7 @@ namespace UnityStandardAssets.Vehicles.Car
             bool reverse = false;
             if (Input.GetButton("Fire2"))
             {
-                Debug.Log("Reverse");
+                //Debug.Log("Reverse");
                 d2 = new Vector3(Mathf.Sign(d2.x) * d2.x, 0f, 0f);
                 brake = -1.0f;
                 reverse = true;

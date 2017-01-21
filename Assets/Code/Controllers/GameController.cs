@@ -213,4 +213,9 @@ public class GameController : MonoBehaviour
         GameStage = GameStages.TRANSITION_TO_STAGE_2;
         WormStage1Timer = 5f;
     }
+
+    public void OnPlayerDeath()
+    {
+        cam.GetComponent<KillCamera>().enabled = true;
+    }
 }
