@@ -24,7 +24,7 @@ public class KillCamera : MonoBehaviour
         desiredRotation = Quaternion.LookRotation(Target.position - transform.position, Vector3.up);
         desiredHeight = Target.position.y;
 
-        float angle = Mathf.Sign(transform.position.x) * Vector3.Angle(Vector3.forward, transform.position);
+        float angle = 60f + Mathf.Sign(transform.position.x) * Vector3.Angle(Vector3.forward, transform.position);
         TargetToRotate.rotation = Quaternion.Euler(
             TargetToRotate.rotation.eulerAngles.x,
             angle,
