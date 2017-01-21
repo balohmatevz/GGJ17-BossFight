@@ -36,6 +36,7 @@ ModelImporter:
     2300012: low wall
     2300014: low wall.001
     2300016: low.001
+    2300018: //RootNode
     3300000: Car
     3300002: Circle
     3300004: Collider mesh
@@ -45,6 +46,7 @@ ModelImporter:
     3300012: low wall
     3300014: low wall.001
     3300016: low.001
+    3300018: //RootNode
     4300000: Collider mesh
     4300002: Generic wall
     4300004: low wall.001
