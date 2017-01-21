@@ -11,9 +11,17 @@ public class GameController : MonoBehaviour
         INIT, INTRODUCTION, STAGE_1, TRANSITION_TO_STAGE_2, STAGE_2
     }
 
+    public enum Stage2Parts
+    {
+        START, MOVING, POP_OUT, OUT_HEALTHY, OUT_WOUNDED, RETRACTING
+    }
+
     #region CONSTANTS
 
     public const int MONSTER_HEALTH = 100;
+    public float STAGE_2_MIN_CIRCLE_DIST = 53.1f;
+    public float STAGE_2_MAX_CIRCLE_DIST = 118.9f;
+    public float STAGE_2_MOVE_TIME = 10f;
 
     #endregion CONSTANTS
 
@@ -26,6 +34,9 @@ public class GameController : MonoBehaviour
     public bool IsInRangeOfRocket = false;
     public List<Turret> Turrets = new List<Turret>();
     public GameStages GameStage = GameStages.INIT;
+    public Stage2Parts CurrentStage2Part = Stage2Parts.START;
+    public Vector3 NextWormStage2Position = Vector3.zero;
+    public float Stage2MoveTimer;
 
     [Header("Scene references")]
     public Camera cam;
@@ -35,11 +46,16 @@ public class GameController : MonoBehaviour
     public GameObject GroundImpact;
     public ParticleSystem GroundImpactPS;
     public CarBehaviour car;
+    public GameObject Stage2MoveParticles;
+    public ParticleSystem Stage2MoveParticlesPS;
+    public GameObject Stage2Worm;
+    public Animator Stage2WormAnim;
 
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
     public Animator WormStage1Animator;
     public float WormStage1Timer = 5f;
+    public float WormStage1Timer2 = 5f;
 
     [Header("Prefabs")]
     public GameObject PF_BulletFriendly;
@@ -79,6 +95,7 @@ public class GameController : MonoBehaviour
         RocketsInFlight = 0;
         GameController.obj.GroundImpactPS.Stop();
         PlayIntroduction();
+        Stage2Worm.SetActive(false);
     }
 
     public void Frame()
@@ -162,13 +179,56 @@ public class GameController : MonoBehaviour
                 }
 
                 WormStage1Timer -= Time.deltaTime;
-                if(WormStage1Timer < 0) {
+                if (WormStage1Timer < 0)
+                {
                     WormStage1Animator.SetBool("Stage1Complete", true);
+                    WormStage1Timer2 -= Time.deltaTime;
                 }
-                //TODO
+
+                if (WormStage1Timer2 <= 0)
+                {
+                    CurrentStage2Part = Stage2Parts.START;
+                    GameStage = GameStages.STAGE_2;
+                    WorkStage1.SetActive(false);
+                }
                 break;
             case GameStages.STAGE_2:
-                //TODO
+                switch (CurrentStage2Part)
+                {
+                    case Stage2Parts.START:
+                        //Choose next spawn position
+                        Vector3 dirVector = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+                        dirVector.Normalize();
+                        NextWormStage2Position = dirVector * Random.Range(STAGE_2_MIN_CIRCLE_DIST, STAGE_2_MAX_CIRCLE_DIST);
+                        Stage2MoveParticles.transform.position = NextWormStage2Position;
+                        Stage2MoveParticlesPS.Play();
+                        Stage2MoveTimer = STAGE_2_MOVE_TIME;
+                        CurrentStage2Part = Stage2Parts.MOVING;
+                        Stage2Worm.transform.position = NextWormStage2Position;
+                        break;
+                    case Stage2Parts.MOVING:
+                        Stage2MoveTimer -= Time.deltaTime;
+                        if (Stage2MoveTimer <= 0)
+                        {
+                            CurrentStage2Part = Stage2Parts.POP_OUT;
+                            Stage2MoveParticlesPS.Stop();
+                            Stage2Worm.SetActive(true);
+                            //Stage2WormAnim.SetBool("", false);
+                        }
+                        break;
+                    case Stage2Parts.POP_OUT:
+
+                        break;
+                    case Stage2Parts.OUT_HEALTHY:
+
+                        break;
+                    case Stage2Parts.OUT_WOUNDED:
+
+                        break;
+                    case Stage2Parts.RETRACTING:
+
+                        break;
+                }
                 break;
         }
 
