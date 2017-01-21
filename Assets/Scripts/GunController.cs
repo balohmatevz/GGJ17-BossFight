@@ -30,10 +30,17 @@ public class GunController : MonoBehaviour
         float deltaTime = Time.deltaTime;
 
         float h = Input.GetAxis("Joystick X");
-        float v = Input.GetAxis("Joystick Y");        
+        float v = Input.GetAxis("Joystick Y");
+
+        if (Input.GetMouseButton(0))
+        {
+            var vPoint = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            h = -1f + vPoint.x * 2f;
+            v = -1f + vPoint.y * 2f;
+        }
 
         // Add some tolerance to prevent the gun from moving when releasing the analog stick
-        if (Mathf.Abs(h) > TOLERANCE || Mathf.Abs(v) > TOLERANCE)
+        if (Input.GetMouseButton(0) || Mathf.Abs(h) > TOLERANCE || Mathf.Abs(v) > TOLERANCE)
         {
             var lastRotation = Gun.rotation;
 
