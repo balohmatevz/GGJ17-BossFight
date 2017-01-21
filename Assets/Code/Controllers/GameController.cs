@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
 
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
+    public Animator WormStage1Animator;
+    public float WormStage1Timer = 5f;
 
     [Header("Prefabs")]
     public GameObject PF_BulletFriendly;
@@ -158,6 +160,11 @@ public class GameController : MonoBehaviour
                 {
                     Turrets[i].OnDeath();
                 }
+
+                WormStage1Timer -= Time.deltaTime;
+                if(WormStage1Timer < 0) {
+                    WormStage1Animator.SetBool("Stage1Complete", true);
+                }
                 //TODO
                 break;
             case GameStages.STAGE_2:
@@ -204,6 +211,6 @@ public class GameController : MonoBehaviour
     {
         //TODO
         GameStage = GameStages.TRANSITION_TO_STAGE_2;
-        WorkStage1.SetActive(false);
+        WormStage1Timer = 5f;
     }
 }

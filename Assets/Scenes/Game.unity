@@ -739,6 +739,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1470252940338442, guid: c0cd2745e93721c4fbbefbb9e05df00f,
     type: 2}
   m_PrefabInternal: {fileID: 2003617358}
+--- !u!95 &929093690 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95984284682407794, guid: c0cd2745e93721c4fbbefbb9e05df00f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2003617358}
 --- !u!1 &1020016305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1020,8 @@ MonoBehaviour:
   car: {fileID: 2145394573}
   RocketEmitters: []
   WorkStage1: {fileID: 929093689}
+  WormStage1Animator: {fileID: 929093690}
+  WormStage1Timer: 5
   PF_BulletFriendly: {fileID: 1375204037049736, guid: 749de639338494d41afaf29fb418095a,
     type: 2}
   PF_BulletEnemy: {fileID: 1159371841190984, guid: 984d5ab05fdd4a94c95942d2d5b3bc71,
@@ -1730,7 +1737,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4241808982459384, guid: c0cd2745e93721c4fbbefbb9e05df00f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 4241808982459384, guid: c0cd2745e93721c4fbbefbb9e05df00f, type: 2}
       propertyPath: m_LocalPosition.z
