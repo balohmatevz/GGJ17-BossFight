@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400000}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Helpers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400002}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400004}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400006}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WheelsHubs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 3300018}
   - component: {fileID: 6500000}
   - component: {fileID: 2300018}
+  - component: {fileID: 114007931763430980}
   m_Layer: 13
   m_Name: ColliderFront
   m_TagString: Untagged
@@ -89,6 +90,7 @@ GameObject:
   - component: {fileID: 3300026}
   - component: {fileID: 6500002}
   - component: {fileID: 2300026}
+  - component: {fileID: 114182990496359044}
   m_Layer: 13
   m_Name: ColliderBody
   m_TagString: Untagged
@@ -107,6 +109,7 @@ GameObject:
   - component: {fileID: 3300030}
   - component: {fileID: 6500004}
   - component: {fileID: 2300030}
+  - component: {fileID: 114930614315424482}
   m_Layer: 13
   m_Name: ColliderBottom
   m_TagString: Untagged
@@ -123,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400032}
   - component: {fileID: 10800000}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HeadlighRightSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400034}
   - component: {fileID: 10800002}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HeadlightLeftSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +159,7 @@ GameObject:
   - component: {fileID: 400036}
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ParticleBurnoutSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +192,7 @@ GameObject:
   - component: {fileID: 14600002}
   - component: {fileID: 8200010}
   - component: {fileID: 11400014}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WheelHubRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +210,7 @@ GameObject:
   - component: {fileID: 14600004}
   - component: {fileID: 8200012}
   - component: {fileID: 11400016}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WheelHubRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +228,7 @@ GameObject:
   - component: {fileID: 14600000}
   - component: {fileID: 8200014}
   - component: {fileID: 11400018}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WheelHubFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +246,7 @@ GameObject:
   - component: {fileID: 14600006}
   - component: {fileID: 8200016}
   - component: {fileID: 11400020}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WheelHubFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +267,7 @@ GameObject:
   - component: {fileID: 11400024}
   - component: {fileID: 114052198223521720}
   - component: {fileID: 114435526664794614}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Car
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -279,7 +282,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400062}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WaypointTargetObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +297,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400064}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CameraFocusPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3946,7 +3949,7 @@ GameObject:
   - component: {fileID: 124415164280782506}
   - component: {fileID: 92126514410185238}
   - component: {fileID: 81931774419664646}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Test Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3963,7 +3966,7 @@ GameObject:
   - component: {fileID: 4702698450361598}
   - component: {fileID: 198363603591676212}
   - component: {fileID: 199071918288395088}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3980,7 +3983,7 @@ GameObject:
   - component: {fileID: 4920644516377094}
   - component: {fileID: 198598873968068596}
   - component: {fileID: 199424354733149448}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3997,7 +4000,7 @@ GameObject:
   - component: {fileID: 4506802952944276}
   - component: {fileID: 198463164979769550}
   - component: {fileID: 199327020053551410}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CarEngineParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4014,7 +4017,7 @@ GameObject:
   - component: {fileID: 4067082906633816}
   - component: {fileID: 198992132234080276}
   - component: {fileID: 199493501183884682}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EmitBurst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4029,7 +4032,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4097720044006236}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CarModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4045,7 +4048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4292028568229162}
   - component: {fileID: 114317449521793878}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Bullet Emitter
   m_TagString: Untagged
   m_Icon: {fileID: -4087464717476244675, guid: 0000000000000000d000000000000000, type: 0}
@@ -4062,7 +4065,7 @@ GameObject:
   - component: {fileID: 4262431935328552}
   - component: {fileID: 198544571966890286}
   - component: {fileID: 199349425373615244}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Emit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4079,7 +4082,7 @@ GameObject:
   - component: {fileID: 4631817107395512}
   - component: {fileID: 198479442490724282}
   - component: {fileID: 199209401924219994}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4096,7 +4099,7 @@ GameObject:
   - component: {fileID: 4425339407218616}
   - component: {fileID: 33056514844352066}
   - component: {fileID: 23671041731811414}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: tire_big_model_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4113,7 +4116,7 @@ GameObject:
   - component: {fileID: 4697838364412832}
   - component: {fileID: 198159880520252226}
   - component: {fileID: 199908579638130986}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4130,7 +4133,7 @@ GameObject:
   - component: {fileID: 4402434077118264}
   - component: {fileID: 33705173305565356}
   - component: {fileID: 23843434752743372}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: car_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4147,7 +4150,7 @@ GameObject:
   - component: {fileID: 4738262521030666}
   - component: {fileID: 198112039186338060}
   - component: {fileID: 199274425726733722}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DeathHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4162,7 +4165,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4658170663454834}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4177,7 +4180,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4278906425756338}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GunPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4194,7 +4197,7 @@ GameObject:
   - component: {fileID: 4554018167576914}
   - component: {fileID: 33355404876057696}
   - component: {fileID: 23595335922619950}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: tire_small_model_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4211,7 +4214,7 @@ GameObject:
   - component: {fileID: 4688323728199828}
   - component: {fileID: 33202550096967006}
   - component: {fileID: 23014173625646098}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: tire_big_model_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4228,7 +4231,7 @@ GameObject:
   - component: {fileID: 4419690875501936}
   - component: {fileID: 198173216122785768}
   - component: {fileID: 199177624389319802}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EmitBurst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4245,7 +4248,7 @@ GameObject:
   - component: {fileID: 4926934312940712}
   - component: {fileID: 33115412032786384}
   - component: {fileID: 23935050023107480}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: tire_small_model_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4262,7 +4265,7 @@ GameObject:
   - component: {fileID: 4446043691216690}
   - component: {fileID: 33478069613677690}
   - component: {fileID: 23134597777492980}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: car_gun_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,6 +4826,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045404524882682}
   m_Enabled: 1
+--- !u!114 &114007931763430980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63348ade3a84b8e40a32088c90b6cc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 114435526664794614}
 --- !u!114 &114052198223521720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4837,6 +4852,18 @@ MonoBehaviour:
   Gun: {fileID: 4658170663454834}
   GunParticleSystem: {fileID: 198544571966890286}
   RotationSmoothing: 0.1
+--- !u!114 &114182990496359044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63348ade3a84b8e40a32088c90b6cc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 114435526664794614}
 --- !u!114 &114317449521793878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4874,6 +4901,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &114930614315424482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63348ade3a84b8e40a32088c90b6cc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 114435526664794614}
 --- !u!124 &124415164280782506
 Behaviour:
   m_ObjectHideFlags: 1

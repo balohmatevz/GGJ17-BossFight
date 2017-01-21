@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterPart : MonoBehaviour
 {
     public const float BLINK_SPEED = 0.2f;
-    public static Color BLINK_COLOR = Color.red;
+    public static Color BLINK_COLOR = Color.white;
     public const float BLINK_DURATION = 2f;
 
     public float Health = 100;
@@ -20,7 +20,11 @@ public class MonsterPart : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mat = this.GetComponent<Renderer>().material;
+        Renderer rend = this.GetComponent<Renderer>();
+        if (rend != null)
+        {
+            mat = this.GetComponent<Renderer>().material;
+        }
     }
 
     // Update is called once per frame
