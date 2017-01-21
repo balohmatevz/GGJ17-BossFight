@@ -8,11 +8,13 @@ public class Turret : MonoBehaviour
 
     private bool isDead = false;
     private Collider[] colliders;
+    private RocketEmitter rocketEmitter;
 
     // Use this for initialization
     void Start()
     {
         colliders = GetComponentsInChildren<Collider>();
+        rocketEmitter = GetComponentInChildren<RocketEmitter>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class Turret : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
+            rocketEmitter.enabled = false;
             Invoke("DisableColliders", 5f);
         }
     }
