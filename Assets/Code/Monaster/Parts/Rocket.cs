@@ -6,12 +6,13 @@ public class Rocket : MonoBehaviour
 {
     public Vector3 origin;
     public Vector3 target;
-
-    public const float DISTANCE_THRESHOLD = 0.1f;
-    public const float SPEED = 4f;
-    public const float ARK_HEIGHT = 4f;
+	public Vector3 originTangent;
+	public Vector3 targetTangent;
+	public AnimationCurve InterpolationCurve;
+	public const float TARGET_TANGENT_HEIGHT = 4f;
+	public float SPEED = 1f;
     public Transform t;
-    public Rigidbody rb;
+	private float normalizeLifetime = 0f;
 
     // Use this for initialization
     void Start()
@@ -22,27 +23,26 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = Vector3.MoveTowards(this.transform.position, target, SPEED * Time.deltaTime);
-        Vector2 startPos = new Vector2(origin.x, origin.z);
-        Vector2 thisPos = new Vector2(pos.x, pos.z);
-        Vector2 endPos = new Vector2(target.x, target.z);
-        float pathPercentage = Vector2.Distance(startPos, thisPos) / Vector2.Distance(startPos, endPos);
-        float posY = Mathf.Sin(pathPercentage * Mathf.PI) * ARK_HEIGHT;
-        pos.y = posY;
-        this.transform.position = pos;
-        if (Vector3.Distance(this.transform.position, target) < DISTANCE_THRESHOLD)
+		normalizeLifetime += Time.deltaTime * SPEED;
+		float curvedLifetime = InterpolationCurve.Evaluate(normalizeLifetime);
+		this.transform.position = BezierUtil.GetPoint(origin, originTangent, targetTangent, target, curvedLifetime);
+		this.transform.forward = BezierUtil.GetFirstDerivative(origin, originTangent, targetTangent, target, curvedLifetime);
+
+		if (normalizeLifetime >= 1)
         {
             GameController.obj.RocketsInFlight--;
             Destroy(this.gameObject);
         }
     }
 
-    public void SetUp(Vector3 origin, Vector3 target)
+	public void SetUp(Vector3 origin, Vector3 originForward, Vector3 target)
     {
+		normalizeLifetime = 0;
         t = this.transform;
-        rb = this.GetComponent<Rigidbody>();
         t.position = origin;
         this.origin = origin;
-        this.target = target;
+		this.target = target;
+		this.targetTangent = target + Vector3.up*TARGET_TANGENT_HEIGHT;
+		this.originTangent = origin + originForward * TARGET_TANGENT_HEIGHT;
     }
 }
