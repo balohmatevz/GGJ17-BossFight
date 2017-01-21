@@ -18,6 +18,8 @@ public class BulletEmitter : MonoBehaviour
     public ParticleSystem BulletFire;
     public ParticleSystem BulletFlash;
     public GameObject BulletFireGO;
+    public ParticleSystem MuzzleFlash;
+    public GameObject MuzzleFlashGO;
     public GameObject BulletFlashGO;
 
     // Use this for initialization
@@ -27,6 +29,7 @@ public class BulletEmitter : MonoBehaviour
         BulletTimer = DELAY_BETWEEN_BULLETS;
         BulletFire.Stop();
         BulletFlash.Stop();
+        MuzzleFlash.Stop();
     }
 
     // Update is called once per frame
@@ -77,6 +80,7 @@ public class BulletEmitter : MonoBehaviour
         BulletFlashGO.transform.rotation = Quaternion.Euler(0, rotation, 0);
         BulletFire.Emit(1);
         BulletFlash.Emit(1);
+        MuzzleFlash.Emit(1);
         bullet.SetUp(this.transform.position, rotation, BULLET_SPEED, BULLET_MAX_DIST);
     }
 }
