@@ -18,6 +18,8 @@ public class Bullet : MonoBehaviour
     public ParticleSystem Hole;
     public GameObject DeathGO;
     public GameObject HoleGO;
+    public ParticleSystem Projectile;
+    public GameObject ProjectileGO;
 
     // Use this for initialization
     void Start()
@@ -50,6 +52,7 @@ public class Bullet : MonoBehaviour
         IsDisabled = false;
         Death.transform.localRotation = Quaternion.identity;
         Hole.transform.localRotation = Quaternion.identity;
+        Projectile.Emit(1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,6 +77,7 @@ public class Bullet : MonoBehaviour
             Death.Emit(1);
             Hole.Emit(1);
             IsDisabled = true;
+            Destroy(ProjectileGO);
         }
     }
 }
