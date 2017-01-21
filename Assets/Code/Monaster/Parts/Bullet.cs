@@ -43,6 +43,7 @@ public class Bullet : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         t.position = origin;
         t.rotation = Quaternion.Euler(0, rotation, 0);
+        t.localScale = Vector3.one;
         this.Speed = speed;
         this.origin = origin;
         this.maxDist = maxDist;

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class BulletEmitter : MonoBehaviour
 {
-    public const float SHOOT_INTERVAL = 4f;
-    public const float MAX_ANGLE = 45f;
-    public const int NUMBER_OF_SHOTS = 10;
+    public float SHOOT_INTERVAL = 4f;
+    public float MAX_ANGLE = 45f;
+    public int NUMBER_OF_SHOTS = 10;
     public const float BULLET_SPEED = 40;
-    public const float BULLET_MAX_DIST = 10;
-    public const float DELAY_BETWEEN_BULLETS = 0.1f;
+    public float BULLET_MAX_DIST = 10;
+    public float DELAY_BETWEEN_BULLETS = 0.1f;
 
     List<float> bulletRotations = new List<float>();
-    public float ShootTimer = SHOOT_INTERVAL;
-    public float BulletTimer = DELAY_BETWEEN_BULLETS;
+    public float ShootTimer;
+    public float BulletTimer;
 
     public ParticleSystem BulletFire;
     public ParticleSystem BulletFlash;
@@ -30,6 +30,8 @@ public class BulletEmitter : MonoBehaviour
         BulletFire.Stop();
         BulletFlash.Stop();
         MuzzleFlash.Stop();
+        ShootTimer = SHOOT_INTERVAL;
+        BulletTimer = DELAY_BETWEEN_BULLETS;
     }
 
     // Update is called once per frame
