@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 4744703656005418}
   - component: {fileID: 33074517472273690}
   - component: {fileID: 23474240118611174}
+  - component: {fileID: 64946456023163270}
   m_Layer: 14
   m_Name: bunker
   m_TagString: Untagged
@@ -1062,6 +1063,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300014, guid: a745f0705c052574ab0990c2f9aae079, type: 3}
+--- !u!64 &64946456023163270
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921810228877924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300010, guid: a745f0705c052574ab0990c2f9aae079, type: 3}
 --- !u!65 &65482197770414698
 BoxCollider:
   m_ObjectHideFlags: 1
