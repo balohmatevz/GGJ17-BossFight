@@ -26,7 +26,8 @@ public class GameController : MonoBehaviour
     public GameObject TargetMarker;
 
     [Header("Prefabs")]
-    public GameObject PF_Bullet;
+    public GameObject PF_BulletFriendly;
+    public GameObject PF_BulletEnemy;
     public GameObject PF_Rocket;
 
     #endregion PUBLIC MEMBERS
@@ -64,47 +65,53 @@ public class GameController : MonoBehaviour
 
     public void Frame()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.LeftAlt))
         {
-            Vector2 deltaMousePos = (Vector2)Input.mousePosition - (Vector2)LastMousePos;
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 deltaMousePos = (Vector2)Input.mousePosition - (Vector2)LastMousePos;
 
-            camT.Rotate(0, deltaMousePos.x * 0.4f, 0, Space.World);
-            camT.Rotate(-deltaMousePos.y * 0.4f, 0, 0, Space.Self);
+                camT.Rotate(0, deltaMousePos.x * 0.4f, 0, Space.World);
+                camT.Rotate(-deltaMousePos.y * 0.4f, 0, 0, Space.Self);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FireShot(camT.position, camT.forward);
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftAlt))
         {
-            //UP
-            camT.Translate(0, 10 * Time.deltaTime, 0, Space.Self);
-        }
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            //DOWN
-            camT.Translate(0, -10 * Time.deltaTime, 0, Space.Self);
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            //FORWARD
-            camT.Translate(0, 0, 10 * Time.deltaTime, Space.Self);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            //BACK
-            camT.Translate(0, 0, -10 * Time.deltaTime, Space.Self);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            //LEFT
-            camT.Translate(-10 * Time.deltaTime, 0, 0, Space.Self);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            //RIGHT
-            camT.Translate(10 * Time.deltaTime, 0, 0, Space.Self);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                //UP
+                camT.Translate(0, 10 * Time.deltaTime, 0, Space.Self);
+            }
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                //DOWN
+                camT.Translate(0, -10 * Time.deltaTime, 0, Space.Self);
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                //FORWARD
+                camT.Translate(0, 0, 10 * Time.deltaTime, Space.Self);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                //BACK
+                camT.Translate(0, 0, -10 * Time.deltaTime, Space.Self);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                //LEFT
+                camT.Translate(-10 * Time.deltaTime, 0, 0, Space.Self);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                //RIGHT
+                camT.Translate(10 * Time.deltaTime, 0, 0, Space.Self);
+            }
         }
 
         LastMousePos = Input.mousePosition;
