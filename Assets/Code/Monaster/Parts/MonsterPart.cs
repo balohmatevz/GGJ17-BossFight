@@ -8,6 +8,7 @@ public class MonsterPart : MonoBehaviour
     public static Color BLINK_COLOR = Color.red;
     public const float BLINK_DURATION = 2f;
 
+    public float Health = 100;
     public bool CanBeHit = true;
     public Material mat;
 
@@ -56,7 +57,7 @@ public class MonsterPart : MonoBehaviour
         }
     }
 
-    public void OnHit()
+    public virtual void OnHit()
     {
         if (HitTimer > 0)
         {

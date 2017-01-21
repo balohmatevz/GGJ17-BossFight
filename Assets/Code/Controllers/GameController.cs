@@ -17,14 +17,17 @@ public class GameController : MonoBehaviour
     [Header("Variables")]
     public int health;
     public Vector2 LastMousePos;
+    public int RocketsInFlight;
 
     [Header("Scene references")]
     public Camera cam;
     public Transform camT;
     public Transform BulletAnchor;
+    public GameObject TargetMarker;
 
     [Header("Prefabs")]
     public GameObject PF_Bullet;
+    public GameObject PF_Rocket;
 
     #endregion PUBLIC MEMBERS
 
@@ -56,6 +59,7 @@ public class GameController : MonoBehaviour
     {
         health = MONSTER_HEALTH;
         LastMousePos = Input.mousePosition;
+        RocketsInFlight = 0;
     }
 
     public void Frame()
@@ -65,7 +69,7 @@ public class GameController : MonoBehaviour
         camT.Rotate(0, deltaMousePos.x * 0.4f, 0, Space.World);
         camT.Rotate(-deltaMousePos.y * 0.4f, 0, 0, Space.Self);
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             FireShot(camT.position, camT.forward);
         }
