@@ -20,9 +20,6 @@ public class GunController : MonoBehaviour
     public Transform Gun;
     public ParticleSystem GunParticleSystem;
 
-    [Header("Prefabs")]
-    public GameObject ProjectilePrefab;
-
     [Header("Variables")]
     public float RotationSmoothing = 0.1f;
 
@@ -34,7 +31,7 @@ public class GunController : MonoBehaviour
     
     #endregion Private Members
     
-    void Update ()
+    void Update()
     {
         float time = Time.time;
         float deltaTime = Time.deltaTime;

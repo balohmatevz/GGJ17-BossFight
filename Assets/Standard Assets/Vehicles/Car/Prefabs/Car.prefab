@@ -4836,7 +4836,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gun: {fileID: 4658170663454834}
   GunParticleSystem: {fileID: 198544571966890286}
-  ProjectilePrefab: {fileID: 0}
   RotationSmoothing: 0.1
 --- !u!114 &114317449521793878
 MonoBehaviour:
