@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
     public Animator WormStage1Animator;
+    public Stage2WormBehaviour WormStage2Behavior;
     public float WormStage1Timer = 5f;
     public float WormStage1Timer2 = 5f;
     public float WormStage2TimerHealthy = 2.13333f;
@@ -250,6 +251,7 @@ public class GameController : MonoBehaviour
                                 CurrentStage2Part = Stage2Parts.POP_OUT;
                                 //Stage2MoveParticlesPS.Stop();
                                 Stage2Worm.SetActive(true);
+                                WormStage2Behavior.ShootBurst();
                                 if (Random.Range(0f, 1f) < 0.5f)
                                 {
                                     Stage2WormAnim.SetBool("Bombed", true); //TODO
@@ -264,7 +266,6 @@ public class GameController : MonoBehaviour
                         }
                         break;
                     case Stage2Parts.POP_OUT:
-
                         break;
                     case Stage2Parts.OUT_HEALTHY:
                         WormStage2TimerHealthy -= Time.deltaTime;

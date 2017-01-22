@@ -12,7 +12,7 @@ public class BulletEmitter : MonoBehaviour
 	public float DELAY_BETWEEN_BULLETS = 0.1f;
 	public float RADIUS = 0f;
 
-    List<float> bulletRotations = new List<float>();
+    protected List<float> bulletRotations = new List<float>();
     public float ShootTimer;
     public float BulletTimer;
     public bool IsFriendly = false;
@@ -28,7 +28,7 @@ public class BulletEmitter : MonoBehaviour
     public CarBehaviour Car;
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         ShootTimer = SHOOT_INTERVAL;
         BulletTimer = DELAY_BETWEEN_BULLETS;
@@ -40,7 +40,7 @@ public class BulletEmitter : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (Turret != null && Turret.isDead)
         {
@@ -78,7 +78,7 @@ public class BulletEmitter : MonoBehaviour
 		}
     }
 
-    public void Shoot()
+    public void Shoot(float angleOffset = 0f)
     {
         float angleDiff = (2 * MAX_ANGLE) / NUMBER_OF_SHOTS;
         bulletRotations = new List<float>();
@@ -86,7 +86,7 @@ public class BulletEmitter : MonoBehaviour
         for (int i = 0; i < NUMBER_OF_SHOTS; i++)
         {
             float angle = this.transform.rotation.eulerAngles.y;
-            angle -= MAX_ANGLE;
+            angle -= MAX_ANGLE + angleOffset;
             angle += i * angleDiff;
             bulletRotations.Add(angle);
         }
