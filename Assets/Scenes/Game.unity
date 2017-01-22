@@ -508,6 +508,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: m_Topspeed
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
   m_IsPrefabParent: 0
@@ -10084,6 +10088,7 @@ MonoBehaviour:
   STAGE_2_MIN_CIRCLE_DIST: 53.1
   STAGE_2_MAX_CIRCLE_DIST: 118.9
   STAGE_2_MOVE_TIME: 10
+  STAGE_2_POP_OUT_WINDUP_TIME: 4
   health: 0
   LastMousePos: {x: 0, y: 0}
   RocketsInFlight: 0
@@ -10092,7 +10097,7 @@ MonoBehaviour:
   GameStage: 0
   CurrentStage2Part: 0
   NextWormStage2Position: {x: 0, y: 0, z: 0}
-  Stage2MoveTimer: 0
+  Stage2PopOutWindupTimeMoveTimer: 0
   cam: {fileID: 1700911036}
   camT: {fileID: 1700911037}
   BulletAnchor: {fileID: 1701642191}
