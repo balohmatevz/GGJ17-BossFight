@@ -12328,7 +12328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 2145394572}
-  DesiredDistance: 25
+  DesiredDistance: 35
+  NeedsRotationCorrection: 1
 --- !u!114 &1700911039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12350,7 +12351,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1700911032}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15fa1595a3e7f9640bee722e6bf7b95e, type: 3}
   m_Name: 
