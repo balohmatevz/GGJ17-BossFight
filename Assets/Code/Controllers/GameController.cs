@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
     public ParticleSystem Stage2MoveParticlesPS;
     public GameObject Stage2Worm;
     public Animator Stage2WormAnim;
+    public GameObject Introduction;
 
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
@@ -98,8 +99,9 @@ public class GameController : MonoBehaviour
         LastMousePos = Input.mousePosition;
         RocketsInFlight = 0;
         GameController.obj.GroundImpactPS.Stop();
-        PlayIntroduction();
         Stage2Worm.SetActive(false);
+        Introduction.SetActive(false);
+        PlayIntroduction();
     }
 
     public void Frame()
@@ -158,7 +160,10 @@ public class GameController : MonoBehaviour
         switch (GameStage)
         {
             case GameStages.INTRODUCTION:
-                EndIntroduction();  //TODO
+                if (Input.GetButtonDown("B Button"))
+                {
+                    EndIntroduction();
+                }
                 break;
             case GameStages.STAGE_1:
                 foreach (RocketEmitter rem in RocketEmitters)
@@ -292,14 +297,14 @@ public class GameController : MonoBehaviour
 
     public void PlayIntroduction()
     {
-        //TODO
         GameStage = GameStages.INTRODUCTION;
+        Introduction.SetActive(true);
         WorkStage1.SetActive(true);
     }
 
     public void EndIntroduction()
     {
-        //TODO
+        Introduction.SetActive(false);
         GameStage = GameStages.STAGE_1;
     }
 
