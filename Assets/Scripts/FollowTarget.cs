@@ -10,6 +10,8 @@ public class FollowTarget : MonoBehaviour
 
     float RotationAdjustment = 0f;
 
+    public bool NeedsRotationCorrection = true;
+
     void Awake()
     {
 
@@ -18,15 +20,14 @@ public class FollowTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Target != null)
         {
             float newZ = Target.position.z - DesiredDistance;
             Vector3 targetPos = new Vector3(Target.position.x, transform.position.y, newZ);
-            transform.position = Vector3.Lerp(this.transform.position, targetPos, 2 * Time.deltaTime);
 
-            if (GameController.obj.GameStage != GameController.GameStages.INTRODUCTION)
+            if (NeedsRotationCorrection && GameController.obj.GameStage != GameController.GameStages.INTRODUCTION)
             {
+                //Debug.Log("Correcting 1!");
                 RotationAdjustment += 0.25f * Time.deltaTime;
                 RotationAdjustment = Mathf.Min(RotationAdjustment, 1);
             }
@@ -36,10 +37,25 @@ public class FollowTarget : MonoBehaviour
             {
                 Quaternion thisRot = this.transform.rotation;
                 Quaternion targetRot = Quaternion.Euler(40, 0, 0);
-                transform.rotation = Quaternion.Lerp(thisRot, targetRot, RotationAdjustment * Time.deltaTime);
+
+                if (Mathf.Abs(targetRot.eulerAngles.x - thisRot.eulerAngles.x) > 0.2f)
+                {
+                    transform.rotation = Quaternion.Lerp(thisRot, targetRot, RotationAdjustment * Time.deltaTime);
+                    NeedsRotationCorrection = true;
+                    //Debug.Log("Correcting 2!");
+                }
+                else
+                {
+                    NeedsRotationCorrection = false;
+                    //Debug.Log("OK!");
+                }
+                
+                transform.position = targetPos;
             }
             else if (GameController.obj.GameStage == GameController.GameStages.TRANSITION_TO_STAGE_2)
             {
+                //Debug.Log("Transitioning to stage 2!");
+
                 Quaternion thisRot = this.transform.rotation;
                 this.transform.LookAt(Vector3.zero);
                 Quaternion targetRot = this.transform.rotation;
