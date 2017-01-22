@@ -68,6 +68,10 @@ public class RocketEmitter : MonoBehaviour
 
     public bool IsInRange()
     {
-        return Vector3.Distance(GameController.obj.car.transform.position, this.transform.position) <= MAX_DIST_TO_FIRE;
+        if (GameController.obj.car != null)
+        {
+            return Vector3.Distance(GameController.obj.car.transform.position, this.transform.position) <= MAX_DIST_TO_FIRE;
+        }
+        return false;
     }
 }
