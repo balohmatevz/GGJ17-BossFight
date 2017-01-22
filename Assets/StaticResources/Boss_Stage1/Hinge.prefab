@@ -1160,9 +1160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8dcdb0cd6a7344aac107cb2eacabba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SHOOT_INTERVAL: 4
-  MAX_DIST_TO_FIRE: 40
-  ShootTimer: 4
+  SHOOT_INTERVAL: 0.5
+  MAX_DIST_TO_FIRE: 50
+  ShootTimer: 3
   Turret: {fileID: 114157902836063938}
 --- !u!114 &114776033916049858
 MonoBehaviour:
@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc03b41142ddf0546b390ea687023bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 300
   CanBeHit: 1
   mat: {fileID: 0}
   OriginalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1195,12 +1195,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0687576f51df1794e999ea7bc30c65d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SHOOT_INTERVAL: 4
+  SHOOT_INTERVAL: 3
   MAX_ANGLE: 45
   NUMBER_OF_SHOTS: 10
   BULLET_MAX_DIST: 100
   DELAY_BETWEEN_BULLETS: 0.1
-  ShootTimer: 4
+  ShootTimer: 3
   BulletTimer: 0.2
   IsFriendly: 0
   BulletFire: {fileID: 198221392113302838}
