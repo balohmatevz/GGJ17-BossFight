@@ -331,9 +331,15 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 0.7087243
-      outSlope: 0.7087243
+      inSlope: 0.1790972
+      outSlope: 0.1790972
       tangentMode: 34
+    - serializedVersion: 2
+      time: 0.22429723
+      value: 0.040171005
+      inSlope: 0.49598747
+      outSlope: 0.49598747
+      tangentMode: 0
     - serializedVersion: 2
       time: 0.7556446
       value: 0.53554374
@@ -352,6 +358,9 @@ MonoBehaviour:
   SPEED: 0.6
   t: {fileID: 0}
   IsDisabled: 1
+  RocketRenderer: {fileID: 0}
+  RocketCubeRenderer: {fileID: 0}
+  Collider: {fileID: 0}
 --- !u!135 &135892595796593998
 SphereCollider:
   m_ObjectHideFlags: 1
