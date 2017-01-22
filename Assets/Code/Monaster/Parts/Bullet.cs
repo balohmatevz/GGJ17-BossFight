@@ -40,12 +40,13 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SetUp(Vector3 origin, float rotation, float speed, float maxDist)
+	public void SetUp(Vector3 origin, float rotation, float speed, float maxDist, float radius)
     {
         t = this.transform;
         rb = this.GetComponent<Rigidbody>();
         t.position = origin;
         t.rotation = Quaternion.Euler(0, rotation, 0);
+		t.position += t.forward*radius;
         t.localScale = Vector3.one;
         this.Speed = speed;
         this.origin = origin;

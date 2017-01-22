@@ -9,12 +9,14 @@ public class BulletEmitter : MonoBehaviour
     public int NUMBER_OF_SHOTS = 10;
     public const float BULLET_SPEED = 40;
     public float BULLET_MAX_DIST = 10;
-    public float DELAY_BETWEEN_BULLETS = 0.1f;
+	public float DELAY_BETWEEN_BULLETS = 0.1f;
+	public float RADIUS = 0f;
 
     List<float> bulletRotations = new List<float>();
     public float ShootTimer;
     public float BulletTimer;
     public bool IsFriendly = false;
+	public bool Shooting = false;
 
     public ParticleSystem BulletFire;
     public ParticleSystem BulletFlash;
@@ -51,23 +53,29 @@ public class BulletEmitter : MonoBehaviour
             //Not currently shooting
         }
 
+		if (!Shooting) {
         ShootTimer -= Time.deltaTime;
-        if (ShootTimer <= 0)
-        {
-            ShootTimer += SHOOT_INTERVAL;
-            Shoot();
-        }
-
-        BulletTimer -= Time.deltaTime;
-        if (BulletTimer <= 0)
-        {
-            BulletTimer += DELAY_BETWEEN_BULLETS;
-            if (bulletRotations.Count > 0)
-            {
-                SpawnBullet(bulletRotations[0]);
-                bulletRotations.RemoveAt(0);
-            }
-        }
+	        if (ShootTimer <= 0)
+	        {
+	            //ShootTimer += SHOOT_INTERVAL;
+	            Shoot();
+	        }
+		} else {
+	        BulletTimer -= Time.deltaTime;
+	        if (BulletTimer <= 0)
+	        {
+	            BulletTimer += DELAY_BETWEEN_BULLETS;
+	            if (bulletRotations.Count > 0)
+	            {
+	                SpawnBullet(bulletRotations[0]);
+	                bulletRotations.RemoveAt(0);
+					if (bulletRotations.Count == 0) {
+						Shooting = false;
+						ShootTimer = SHOOT_INTERVAL;
+					}
+	            }
+	        }
+		}
     }
 
     public void Shoot()
@@ -83,6 +91,7 @@ public class BulletEmitter : MonoBehaviour
             bulletRotations.Add(angle);
         }
         BulletTimer = DELAY_BETWEEN_BULLETS;
+		Shooting = true;
     }
 
     public void SpawnBullet(float rotation)
@@ -103,8 +112,8 @@ public class BulletEmitter : MonoBehaviour
         BulletFireGO.transform.rotation = Quaternion.Euler(0, rotation, 0);
         BulletFlashGO.transform.rotation = Quaternion.Euler(0, rotation, 0);
         BulletFire.Emit(1);
-        BulletFlash.Emit(1);
-        MuzzleFlash.Emit(1);
-        bullet.SetUp(this.transform.position, rotation, BULLET_SPEED, BULLET_MAX_DIST);
+		BulletFlash.Play();
+		MuzzleFlash.Play();
+		bullet.SetUp(this.transform.position, rotation, BULLET_SPEED, BULLET_MAX_DIST, RADIUS);
     }
 }
