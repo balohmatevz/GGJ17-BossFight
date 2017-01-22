@@ -9,7 +9,7 @@ public class Rocket : MonoBehaviour
     public Vector3 originTangent;
     public Vector3 targetTangent;
     public AnimationCurve InterpolationCurve;
-    public const float TARGET_TANGENT_HEIGHT = 4f;
+    public const float TARGET_TANGENT_HEIGHT = 30f;
     public float SPEED = 1f;
     public Transform t;
     private float normalizeLifetime = 0f;
