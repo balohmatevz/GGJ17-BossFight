@@ -278,7 +278,7 @@ public class GameController : MonoBehaviour
                             Stage2PopOutWindupTimeMoveTimer -= Time.deltaTime;
                             if (Stage2PopOutWindupTimeMoveTimer <= 0)
                             {
-                                CurrentStage2Part = Stage2Parts.POP_OUT;
+                                CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
                                 //Stage2MoveParticlesPS.Stop();
                                 Stage2Worm.SetActive(true);
 
@@ -291,6 +291,7 @@ public class GameController : MonoBehaviour
                                     {
                                         Stage2WormAnim.SetBool("Bombed", true); //TODO
                                         CurrentStage2Part = Stage2Parts.OUT_WOUNDED;
+                                        break;
                                     }
                                     else
                                     {

@@ -25,10 +25,13 @@ public class KillCamera : MonoBehaviour
         desiredHeight = Target.position.y;
 
         float angle = 60f + Mathf.Sign(transform.position.x) * Vector3.Angle(Vector3.forward, transform.position);
-        TargetToRotate.rotation = Quaternion.Euler(
-            TargetToRotate.rotation.eulerAngles.x,
-            angle,
-            TargetToRotate.rotation.eulerAngles.z);
+        if (TargetToRotate != null)
+        {
+            TargetToRotate.rotation = Quaternion.Euler(
+                TargetToRotate.rotation.eulerAngles.x,
+                angle,
+                TargetToRotate.rotation.eulerAngles.z);
+        }
     }
 
     // Update is called once per frame

@@ -11003,7 +11003,7 @@ MonoBehaviour:
   WormStage1Animator: {fileID: 1483768777}
   WormStage1Timer: 5
   WormStage1Timer2: 5
-  WormStage2TimerHealthy: 2.13333
+  WormStage2TimerHealthy: 5
   WormStage2TimerWounded: 5
   WormStage2TimerRetracting: 5
   PF_BulletFriendly: {fileID: 1375204037049736, guid: 749de639338494d41afaf29fb418095a,
