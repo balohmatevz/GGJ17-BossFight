@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour
     public GameObject GroundImpact;
     public ParticleSystem GroundImpactPS;
     public CarBehaviour car;
+    public AngularTweenBehaviour Stage2DustCloudController;
     public GameObject Stage2MoveParticles;
     public ParticleSystem Stage2MoveParticlesPS;
     public GameObject Stage2Worm;
@@ -203,8 +204,9 @@ public class GameController : MonoBehaviour
                         Vector3 dirVector = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
                         dirVector.Normalize();
                         NextWormStage2Position = dirVector * Random.Range(STAGE_2_MIN_CIRCLE_DIST, STAGE_2_MAX_CIRCLE_DIST);
-                        Stage2MoveParticles.transform.position = NextWormStage2Position;
-                        Stage2MoveParticlesPS.Play();
+                        //Stage2MoveParticles.transform.position = NextWormStage2Position;
+                        //Stage2MoveParticlesPS.Play();
+                        Stage2DustCloudController.StartTween(Stage2Worm.transform.position, NextWormStage2Position, STAGE_2_MOVE_TIME);
                         Stage2MoveTimer = STAGE_2_MOVE_TIME;
                         CurrentStage2Part = Stage2Parts.MOVING;
                         Stage2Worm.transform.position = NextWormStage2Position;
@@ -216,10 +218,11 @@ public class GameController : MonoBehaviour
                         WormStage2TimerRetracting = 1.8f;
                         Stage2WormAnim.Rebind();
                         Stage2WormAnim.SetBool("HasRecovered", false);
-                        if (Stage2MoveTimer <= 0)
+                        //if (Stage2MoveTimer <= 0)
+                        if (Stage2DustCloudController.Finished)
                         {
                             CurrentStage2Part = Stage2Parts.POP_OUT;
-                            Stage2MoveParticlesPS.Stop();
+                            //Stage2MoveParticlesPS.Stop();
                             Stage2Worm.SetActive(true);
                             if (Random.Range(0f, 1f) < 0.5f)
                             {
