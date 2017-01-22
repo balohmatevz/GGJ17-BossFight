@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465778, g: 0.49641418, b: 0.57481766, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641502, b: 0.57481873, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -650,6 +650,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2673272a5c2541e479f4bffe6a380dde, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &208304911 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114370464724132942, guid: 2673272a5c2541e479f4bffe6a380dde,
+    type: 2}
+  m_PrefabInternal: {fileID: 208304910}
+  m_Script: {fileID: 11500000, guid: ec521eeba5d4e9a419f08b714ee471be, type: 3}
 --- !u!1 &219885065
 GameObject:
   m_ObjectHideFlags: 0
@@ -11001,6 +11007,7 @@ MonoBehaviour:
   RocketEmitters: []
   WorkStage1: {fileID: 1483768776}
   WormStage1Animator: {fileID: 1483768777}
+  Stage2WormBehaviour: {fileID: 208304911}
   WormStage1Timer: 5
   WormStage1Timer2: 5
   WormStage2TimerHealthy: 2.13333
