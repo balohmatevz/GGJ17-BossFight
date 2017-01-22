@@ -46,8 +46,6 @@ public class FollowTarget : MonoBehaviour
                 transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(-52, 53, -2), 5 * Time.deltaTime);
                 transform.rotation = Quaternion.Lerp(thisRot, targetRot, Time.deltaTime);
             }
-
-
         }
     }
 }

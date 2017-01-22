@@ -6,6 +6,16 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public static GameController obj;
+    public bool CanLayMines = false;
+    public GameObject MinesOverlay;
+    public GameObject PF_Mine;
+    public float MineTimer = 5f;
+    public List<Mine> Mines = new List<Mine>();
+    public bool IsWormWounded = false;
+
+    public GameObject Stage2Overlay;
+
+    public float MINE_KILLS_WORM_THRESHOLD = 10f;
 
     public enum GameStages
     {
@@ -57,10 +67,12 @@ public class GameController : MonoBehaviour
     public Animator Stage2WormAnim;
     public GameObject Introduction;
     public GameObject GameOver;
+    public WormStage2Hit Wurm2Hit;
 
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
     public Animator WormStage1Animator;
+    public Stage2WormBehaviour Stage2WormBehaviour;
     public float WormStage1Timer = 5f;
     public float WormStage1Timer2 = 5f;
     public float WormStage2TimerHealthy = 2.13333f;
@@ -113,6 +125,10 @@ public class GameController : MonoBehaviour
         Stage2Worm.SetActive(false);
         Introduction.SetActive(false);
         GameOver.SetActive(false);
+        Stage2Overlay.SetActive(false);
+
+        MineTimer = 0;
+        MinesOverlay.SetActive(false);
         PlayIntroduction();
     }
 
@@ -218,12 +234,27 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case GameStages.STAGE_2:
+
+
+                Stage2Overlay.SetActive(true);
+
+                if (CanLayMines)
+                {
+                    MineTimer -= Time.deltaTime;
+                    if (Input.GetButtonDown("B Button"))
+                    {
+                        PlaceMine();
+                    }
+                }
+
                 switch (CurrentStage2Part)
                 {
                     case Stage2Parts.START:
                         //Choose next spawn position
                         lastDirectionAngle += Mathf.Sign(Random.value - 0.5f) * Random.Range(STAGE_2_NEW_POSITION_MIN_ANGLE_DEG, STAGE_2_NEW_POSITION_MAX_ANGLE_DEG);
                         lastDirectionAngle %= 360;
+
+                        IsWormWounded = false;
 
                         var angleRad = lastDirectionAngle * Mathf.Deg2Rad;
                         Vector3 dirVector = new Vector3(Mathf.Cos(angleRad), 0f, Mathf.Sin(angleRad));
@@ -240,6 +271,7 @@ public class GameController : MonoBehaviour
                         WormStage2TimerWounded = 5f;
                         WormStage2TimerRetracting = 1.8f;
                         Stage2WormAnim.Rebind();
+                        IsWormWounded = false;
                         Stage2WormAnim.SetBool("HasRecovered", false);
                         //if (Stage2MoveTimer <= 0)
                         if (Stage2DustCloudController.Finished)
@@ -247,18 +279,27 @@ public class GameController : MonoBehaviour
                             Stage2PopOutWindupTimeMoveTimer -= Time.deltaTime;
                             if (Stage2PopOutWindupTimeMoveTimer <= 0)
                             {
-                                CurrentStage2Part = Stage2Parts.POP_OUT;
+                                CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
                                 //Stage2MoveParticlesPS.Stop();
                                 Stage2Worm.SetActive(true);
-                                if (Random.Range(0f, 1f) < 0.5f)
+                                Stage2WormBehaviour.ShootBurst();
+
+                                Vector2 pos2D = new Vector2(NextWormStage2Position.x, NextWormStage2Position.z);
+                                foreach (Mine mine in Mines)
                                 {
-                                    Stage2WormAnim.SetBool("Bombed", true); //TODO
-                                    CurrentStage2Part = Stage2Parts.OUT_WOUNDED;
-                                }
-                                else
-                                {
-                                    Stage2WormAnim.SetBool("Bombed", false); //TODO
-                                    CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
+                                    Vector2 mine2D = new Vector2(mine.transform.position.x, mine.transform.position.z);
+                                    Debug.Log(Vector2.Distance(pos2D, mine2D));
+                                    if (Vector2.Distance(pos2D, mine2D) <= MINE_KILLS_WORM_THRESHOLD)
+                                    {
+                                        Stage2WormAnim.SetBool("Bombed", true); //TODO
+                                        CurrentStage2Part = Stage2Parts.OUT_WOUNDED;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Stage2WormAnim.SetBool("Bombed", false); //TODO
+                                        CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
+                                    }
                                 }
                             }
                         }
@@ -267,6 +308,7 @@ public class GameController : MonoBehaviour
 
                         break;
                     case Stage2Parts.OUT_HEALTHY:
+                        IsWormWounded = false;
                         WormStage2TimerHealthy -= Time.deltaTime;
                         if (WormStage2TimerHealthy <= 0)
                         {
@@ -275,6 +317,7 @@ public class GameController : MonoBehaviour
                         }
                         break;
                     case Stage2Parts.OUT_WOUNDED:
+                        IsWormWounded = true;
                         WormStage2TimerWounded -= Time.deltaTime;
                         if (WormStage2TimerWounded <= 0)
                         {
@@ -283,6 +326,7 @@ public class GameController : MonoBehaviour
                         }
                         break;
                     case Stage2Parts.RETRACTING:
+                        IsWormWounded = false;
                         WormStage2TimerRetracting -= Time.deltaTime;
                         if (WormStage2TimerRetracting <= 0)
                         {
@@ -354,5 +398,27 @@ public class GameController : MonoBehaviour
     {
         GameStage = GameStages.DEAD;
         cam.GetComponent<KillCamera>().enabled = true;
+    }
+
+    public void MinesAcquired()
+    {
+        CanLayMines = true;
+        MinesOverlay.SetActive(true);
+    }
+
+    public void PlaceMine()
+    {
+        if (MineTimer > 0)
+        {
+            return;
+        }
+
+        MineTimer = 5f;
+        GameObject go = Instantiate(PF_Mine);
+        Transform t = go.transform;
+        t.SetParent(BulletAnchor);
+        t.position = car.transform.position;
+        Mine mine = go.GetComponent<Mine>();
+        Mines.Add(mine);
     }
 }
