@@ -20,9 +20,11 @@ public class GameController : MonoBehaviour
 
     public const int MONSTER_HEALTH = 100;
     public float STAGE_2_MIN_CIRCLE_DIST = 53.1f;
-    public float STAGE_2_MAX_CIRCLE_DIST = 118.9f;
+    public float STAGE_2_MAX_CIRCLE_DIST = 110.9f;
     public float STAGE_2_MOVE_TIME = 10f;
-    public float STAGE_2_POP_OUT_WINDUP_TIME = 4f;
+    public const float STAGE_2_POP_OUT_WINDUP_TIME = 4f;
+    public const float STAGE_2_NEW_POSITION_MIN_ANGLE_DEG = 80f;
+    public const float STAGE_2_NEW_POSITION_MAX_ANGLE_DEG = 160f;
 
     #endregion CONSTANTS
 
@@ -69,6 +71,12 @@ public class GameController : MonoBehaviour
     public GameObject PF_Rocket;
 
     #endregion PUBLIC MEMBERS
+
+    #region PRIVATE MEMBERS
+
+    private float lastDirectionAngle = 180f;
+
+    #endregion PRIVATE MEMBERS
 
     #region UNITY METHODS
     // Use this for initialization
@@ -210,8 +218,11 @@ public class GameController : MonoBehaviour
                 {
                     case Stage2Parts.START:
                         //Choose next spawn position
-                        Vector3 dirVector = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-                        dirVector.Normalize();
+                        lastDirectionAngle += Mathf.Sign(Random.value - 0.5f) * Random.Range(STAGE_2_NEW_POSITION_MIN_ANGLE_DEG, STAGE_2_NEW_POSITION_MAX_ANGLE_DEG);
+                        lastDirectionAngle %= 360;
+
+                        var angleRad = lastDirectionAngle * Mathf.Deg2Rad;
+                        Vector3 dirVector = new Vector3(Mathf.Cos(angleRad), 0f, Mathf.Sin(angleRad));
                         NextWormStage2Position = dirVector * Random.Range(STAGE_2_MIN_CIRCLE_DIST, STAGE_2_MAX_CIRCLE_DIST);
                         //Stage2MoveParticles.transform.position = NextWormStage2Position;
                         //Stage2MoveParticlesPS.Play();
