@@ -31,10 +31,22 @@ public class FollowTarget : MonoBehaviour
                 RotationAdjustment = Mathf.Min(RotationAdjustment, 1);
             }
 
-            Quaternion thisRot = this.transform.rotation;
-            this.transform.LookAt(GameController.obj.car.transform);
-            Quaternion targetRot = Quaternion.Euler(40, 0, 0);
-            transform.rotation = Quaternion.Lerp(thisRot, targetRot, RotationAdjustment * Time.deltaTime);
+
+            if (GameController.obj.GameStage == GameController.GameStages.STAGE_1 || GameController.obj.GameStage == GameController.GameStages.STAGE_2)
+            {
+                Quaternion thisRot = this.transform.rotation;
+                Quaternion targetRot = Quaternion.Euler(40, 0, 0);
+                transform.rotation = Quaternion.Lerp(thisRot, targetRot, RotationAdjustment * Time.deltaTime);
+            }
+            else if (GameController.obj.GameStage == GameController.GameStages.TRANSITION_TO_STAGE_2)
+            {
+                Quaternion thisRot = this.transform.rotation;
+                this.transform.LookAt(Vector3.zero);
+                Quaternion targetRot = this.transform.rotation;
+                transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(-52, 53, -2), 5 * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(thisRot, targetRot, Time.deltaTime);
+            }
+
 
         }
     }
