@@ -1703,7 +1703,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "This game was made in January 2017 for Global Game Jam by Matev\u017E Baloh,
-    Jernej Petaros. Darjo Vuk and Istok Lovin\u010Di\u010D"
+    Jernej Petaros, Darjo Vuk and Istok Lovin\u010Di\u010D"
 --- !u!222 &599958515
 CanvasRenderer:
   m_ObjectHideFlags: 0
