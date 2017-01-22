@@ -20,10 +20,13 @@ public class CarBehaviour : MonoBehaviour
 
     public void OnHit(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        if (GameController.obj.GameStage == GameController.GameStages.STAGE_1 || GameController.obj.GameStage == GameController.GameStages.STAGE_2)
         {
-            OnDeath();
+            health -= damage;
+            if (health <= 0)
+            {
+                OnDeath();
+            }
         }
     }
 
