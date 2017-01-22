@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     public float STAGE_2_MIN_CIRCLE_DIST = 53.1f;
     public float STAGE_2_MAX_CIRCLE_DIST = 118.9f;
     public float STAGE_2_MOVE_TIME = 10f;
+    public float STAGE_2_POP_OUT_WINDUP_TIME = 4f;
 
     #endregion CONSTANTS
 
@@ -36,7 +37,7 @@ public class GameController : MonoBehaviour
     public GameStages GameStage = GameStages.INIT;
     public Stage2Parts CurrentStage2Part = Stage2Parts.START;
     public Vector3 NextWormStage2Position = Vector3.zero;
-    public float Stage2MoveTimer;
+    public float Stage2PopOutWindupTimeMoveTimer;
 
     [Header("Scene references")]
     public Camera cam;
@@ -153,6 +154,9 @@ public class GameController : MonoBehaviour
                 //RIGHT
                 camT.Translate(10 * Time.deltaTime, 0, 0, Space.Self);
             }
+            if (Input.GetKey(KeyCode.Alpha2)) {
+                TransitionToStage2();
+            }
         }
 
         IsInRangeOfRocket = false;
@@ -212,12 +216,11 @@ public class GameController : MonoBehaviour
                         //Stage2MoveParticles.transform.position = NextWormStage2Position;
                         //Stage2MoveParticlesPS.Play();
                         Stage2DustCloudController.StartTween(Stage2Worm.transform.position, NextWormStage2Position, STAGE_2_MOVE_TIME);
-                        Stage2MoveTimer = STAGE_2_MOVE_TIME;
                         CurrentStage2Part = Stage2Parts.MOVING;
+                        Stage2PopOutWindupTimeMoveTimer = STAGE_2_POP_OUT_WINDUP_TIME;
                         Stage2Worm.transform.position = NextWormStage2Position;
                         break;
                     case Stage2Parts.MOVING:
-                        Stage2MoveTimer -= Time.deltaTime;
                         WormStage2TimerHealthy = 5f;
                         WormStage2TimerWounded = 5f;
                         WormStage2TimerRetracting = 1.8f;
@@ -226,18 +229,22 @@ public class GameController : MonoBehaviour
                         //if (Stage2MoveTimer <= 0)
                         if (Stage2DustCloudController.Finished)
                         {
-                            CurrentStage2Part = Stage2Parts.POP_OUT;
-                            //Stage2MoveParticlesPS.Stop();
-                            Stage2Worm.SetActive(true);
-                            if (Random.Range(0f, 1f) < 0.5f)
+                            Stage2PopOutWindupTimeMoveTimer -= Time.deltaTime;
+                            if (Stage2PopOutWindupTimeMoveTimer <= 0)
                             {
-                                Stage2WormAnim.SetBool("Bombed", true); //TODO
-                                CurrentStage2Part = Stage2Parts.OUT_WOUNDED;
-                            }
-                            else
-                            {
-                                Stage2WormAnim.SetBool("Bombed", false); //TODO
-                                CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
+                                CurrentStage2Part = Stage2Parts.POP_OUT;
+                                //Stage2MoveParticlesPS.Stop();
+                                Stage2Worm.SetActive(true);
+                                if (Random.Range(0f, 1f) < 0.5f)
+                                {
+                                    Stage2WormAnim.SetBool("Bombed", true); //TODO
+                                    CurrentStage2Part = Stage2Parts.OUT_WOUNDED;
+                                }
+                                else
+                                {
+                                    Stage2WormAnim.SetBool("Bombed", false); //TODO
+                                    CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
+                                }
                             }
                         }
                         break;
