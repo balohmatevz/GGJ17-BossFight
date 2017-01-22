@@ -509,6 +509,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114606410789453492, guid: 6c19ee8445ed8004986741b042e57e1f,
+        type: 2}
+      propertyPath: bulletEmitter
+      value: 
+      objectReference: {fileID: 636090974}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c19ee8445ed8004986741b042e57e1f, type: 2}
   m_IsPrefabParent: 0
@@ -3951,6 +3956,12 @@ ParticleSystem:
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
+--- !u!114 &636090974 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114643579523690564, guid: 6c19ee8445ed8004986741b042e57e1f,
+    type: 2}
+  m_PrefabInternal: {fileID: 208304910}
+  m_Script: {fileID: 11500000, guid: e75bdb924069d314c9d2ad685d41c32c, type: 3}
 --- !u!1 &660972717
 GameObject:
   m_ObjectHideFlags: 0

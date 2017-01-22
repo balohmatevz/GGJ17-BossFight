@@ -6,8 +6,6 @@ public class WormBulletEmitter : BulletEmitter
 {
     public float BurstDelay = 0.2f;
 
-    private bool Shooting = false;
-
     // Use this for initialization
     protected override void Start()
     {
