@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 
     public enum GameStages
     {
-        INIT, INTRODUCTION, STAGE_1, TRANSITION_TO_STAGE_2, STAGE_2, DEAD
+        INIT, INTRODUCTION, STAGE_1, TRANSITION_TO_STAGE_2, STAGE_2, DEAD, WIN
     }
 
     public enum Stage2Parts
@@ -68,6 +68,7 @@ public class GameController : MonoBehaviour
     public GameObject Introduction;
     public GameObject GameOver;
     public WormStage2Hit Wurm2Hit;
+    public GameObject Victory;
 
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
@@ -126,6 +127,7 @@ public class GameController : MonoBehaviour
         Introduction.SetActive(false);
         GameOver.SetActive(false);
         Stage2Overlay.SetActive(false);
+        Victory.SetActive(false);
 
         MineTimer = 0;
         MinesOverlay.SetActive(false);
@@ -420,5 +422,12 @@ public class GameController : MonoBehaviour
         t.position = car.transform.position;
         Mine mine = go.GetComponent<Mine>();
         Mines.Add(mine);
+    }
+
+    public void Win()
+    {
+        Victory.SetActive(true);
+        GameStage = GameStages.WIN;
+        Stage2Worm.SetActive(false);
     }
 }

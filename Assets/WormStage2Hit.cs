@@ -12,6 +12,15 @@ public class WormStage2Hit : BulletHitEffect
         obj = this;
     }
 
+    protected void Update()
+    {
+        if (health <= 0)
+        {
+            GameController.obj.Win();
+            this.enabled = false;
+        }
+    }
+
     public override void OnHit(Bullet bullet)
     {
         Debug.Log("HIT2");
