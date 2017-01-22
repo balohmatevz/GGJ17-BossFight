@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class GameController : MonoBehaviour
 
     public enum GameStages
     {
-        INIT, INTRODUCTION, STAGE_1, TRANSITION_TO_STAGE_2, STAGE_2
+        INIT, INTRODUCTION, STAGE_1, TRANSITION_TO_STAGE_2, STAGE_2, DEAD
     }
 
     public enum Stage2Parts
@@ -53,6 +54,7 @@ public class GameController : MonoBehaviour
     public GameObject Stage2Worm;
     public Animator Stage2WormAnim;
     public GameObject Introduction;
+    public GameObject GameOver;
 
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
@@ -102,6 +104,7 @@ public class GameController : MonoBehaviour
         GameController.obj.GroundImpactPS.Stop();
         Stage2Worm.SetActive(false);
         Introduction.SetActive(false);
+        GameOver.SetActive(false);
         PlayIntroduction();
     }
 
@@ -154,7 +157,8 @@ public class GameController : MonoBehaviour
                 //RIGHT
                 camT.Translate(10 * Time.deltaTime, 0, 0, Space.Self);
             }
-            if (Input.GetKey(KeyCode.Alpha2)) {
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
                 TransitionToStage2();
             }
         }
@@ -278,6 +282,13 @@ public class GameController : MonoBehaviour
                         break;
                 }
                 break;
+            case GameStages.DEAD:
+                GameOver.SetActive(true);
+                if (Input.GetButtonDown("B Button"))
+                {
+                    SceneManager.LoadScene("Game");
+                }
+                break;
         }
 
         LastMousePos = Input.mousePosition;
@@ -307,12 +318,18 @@ public class GameController : MonoBehaviour
         GameStage = GameStages.INTRODUCTION;
         Introduction.SetActive(true);
         WorkStage1.SetActive(true);
+        cam.GetComponent<KillCamera>().enabled = false;
+        cam.GetComponent<FollowTarget>().enabled = false;
+        cam.GetComponent<IntroductionCamera>().enabled = true;
     }
 
     public void EndIntroduction()
     {
         Introduction.SetActive(false);
         GameStage = GameStages.STAGE_1;
+        cam.GetComponent<KillCamera>().enabled = false;
+        cam.GetComponent<FollowTarget>().enabled = true;
+        cam.GetComponent<IntroductionCamera>().enabled = false;
     }
 
     public void TransitionToStage2()
@@ -324,6 +341,7 @@ public class GameController : MonoBehaviour
 
     public void OnPlayerDeath()
     {
+        GameStage = GameStages.DEAD;
         cam.GetComponent<KillCamera>().enabled = true;
     }
 }
