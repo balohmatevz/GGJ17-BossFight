@@ -72,6 +72,7 @@ public class GameController : MonoBehaviour
     public List<RocketEmitter> RocketEmitters = new List<RocketEmitter>();
     public GameObject WorkStage1;
     public Animator WormStage1Animator;
+    public Stage2WormBehaviour Stage2WormBehaviour;
     public float WormStage1Timer = 5f;
     public float WormStage1Timer2 = 5f;
     public float WormStage2TimerHealthy = 2.13333f;
@@ -281,6 +282,7 @@ public class GameController : MonoBehaviour
                                 CurrentStage2Part = Stage2Parts.OUT_HEALTHY;
                                 //Stage2MoveParticlesPS.Stop();
                                 Stage2Worm.SetActive(true);
+                                Stage2WormBehaviour.ShootBurst();
 
                                 Vector2 pos2D = new Vector2(NextWormStage2Position.x, NextWormStage2Position.z);
                                 foreach (Mine mine in Mines)
