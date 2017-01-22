@@ -9,11 +9,15 @@ public class Rocket : MonoBehaviour
     public Vector3 originTangent;
     public Vector3 targetTangent;
     public AnimationCurve InterpolationCurve;
-    public const float TARGET_TANGENT_HEIGHT = 30f;
+    public const float TARGET_TANGENT_HEIGHT = 20f;
     public float SPEED = 1f;
     public Transform t;
     private float normalizeLifetime = 0f;
     public bool IsDisabled = true;
+
+	public Renderer RocketRenderer;
+	public Renderer RocketCubeRenderer;
+	public Collider Collider;
 
     // Use this for initialization
     void Start()
@@ -24,6 +28,8 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (IsDisabled)
+			return;
         normalizeLifetime += Time.deltaTime * SPEED;
         float curvedLifetime = InterpolationCurve.Evaluate(normalizeLifetime);
         this.transform.position = BezierUtil.GetPoint(origin, originTangent, targetTangent, target, curvedLifetime);

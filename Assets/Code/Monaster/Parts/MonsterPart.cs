@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MonsterPart : MonoBehaviour
 {
-    public const float BLINK_SPEED = 0.2f;
+    public const float BLINK_SPEED = 0.05f;
     public static Color BLINK_COLOR = Color.white;
-    public const float BLINK_DURATION = 2f;
+    public const float BLINK_DURATION = .05f;
 
     public float Health = 100;
     public bool CanBeHit = true;

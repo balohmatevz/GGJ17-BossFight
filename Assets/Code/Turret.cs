@@ -8,6 +8,7 @@ public class Turret : MonoBehaviour
 
     public bool isDead = false;
     private Collider[] colliders;
+	public Animation GunAnimation;
     private RocketEmitter rocketEmitter;
 
     // Use this for initialization
@@ -36,7 +37,9 @@ public class Turret : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
-            rocketEmitter.enabled = false;
+			rocketEmitter.enabled = false;
+			GunAnimation.Stop();
+			GunAnimation.enabled=false;
             Invoke("DisableColliders", 6f);
         }
     }
